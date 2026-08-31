@@ -12,6 +12,7 @@ setwd(intg_dir)
 
 p <- read_csv("parameters/aih-prior3-s16-p4-means.csv", show_col_types = FALSE)
 dir.create("controls", showWarnings = FALSE)
+dir.create(file.path("output", "trees"), recursive = TRUE, showWarnings = FALSE)
 
 migration_pairs <- list(
   c("ajan_alas", "intg_nGL_Nslope"), c("ajan_alas", "intg_CAswGL"),
@@ -62,4 +63,4 @@ for (i in seq_len(nrow(p))) {
   }
 }
 
-message("Generated 18 controls in intg/controls/")
+message("Generated 18 controls in intg/controls/ and ensured intg/output/trees/ exists")
