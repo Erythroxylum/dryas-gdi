@@ -25,10 +25,20 @@ migration_pairs <- list(
   c("IIH", "ajan_alas"), c("IH", "ajan_alas"), c("IH", "intg_nGL_Nslope")
 )
 
-make_ctl <- function(row, config) {
-  counts <- if (config == "aab") "0 2 1 0" else "0 1 2 0"
-  imap <- if (config == "aab") "imap/aab.imap.txt" else "imap/abb.imap.txt"
-  treefile <- sprintf("output/trees/%s_%s.tree.txt", row$chromosome, config)
+comparison_specs <- list(
+  intg = list(
+    aab = list(counts = "0 2 1 0", imap = "imap/aab.imap.txt"),
+    abb = list(counts = "0 1 2 0", imap = "imap/abb.imap.txt")
+  ),
+  ca_hook = list(
+    aab = list(counts = "0 0 2 1", imap = "imap/ca_hook_aab.imap.txt"),
+    abb = list(counts = "0 0 1 2", imap = "imap/ca_hook_abb.imap.txt")
+  )
+)
+
+make_ctl <- function(row, comparison, config) {
+  spec <- comparison_specs[[comparison]][[config]]
+  treefile <- sprintf("output/trees/%s_%s_%s.tree.txt", row$chromosome, comparison, config)
 
   tree <- sprintf(
     "(ajan_alas #%g, (intg_nGL_Nslope #%g, (intg_CAswGL #%g, hook #%g)IH:%g #%g)IIH:%g #%g)R:%g #%g;",
@@ -45,9 +55,9 @@ make_ctl <- function(row, config) {
   paste(c(
     "seed = -1",
     paste("treefile =", treefile),
-    paste("Imapfile =", imap),
+    paste("Imapfile =", spec$imap),
     "species&tree = 4 ajan_alas intg_nGL_Nslope intg_CAswGL hook",
-    paste("                ", counts),
+    paste("                ", spec$counts),
     tree,
     "loci&length = 1000000 50",
     "migration = 18",
@@ -57,10 +67,12 @@ make_ctl <- function(row, config) {
 
 for (i in seq_len(nrow(p))) {
   row <- p[i, ]
-  for (config in c("aab", "abb")) {
-    outfile <- file.path("controls", paste0(row$chromosome, "_", config, ".ctl"))
-    writeLines(make_ctl(row, config), outfile)
+  for (comparison in names(comparison_specs)) {
+    for (config in c("aab", "abb")) {
+      outfile <- file.path("controls", paste0(row$chromosome, "_", comparison, "_", config, ".ctl"))
+      writeLines(make_ctl(row, comparison, config), outfile)
+    }
   }
 }
 
-message("Generated 18 controls in intg/controls/ and ensured intg/output/trees/ exists")
+message("Generated 36 controls in intg/controls/ and ensured intg/output/trees/ exists")
