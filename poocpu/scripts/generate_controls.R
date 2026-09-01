@@ -16,11 +16,15 @@ if (!file.exists(param_file)) stop("Missing ", param_file, ". Add chromosome-spe
 if (!file.exists(model_file)) stop("Missing ", model_file, ". Add the exact PoOcPu1 demographic model specification first.")
 source(model_file)
 
-required_objects <- c("population_order", "comparison_specs", "make_species_tree", "migration_pairs")
+required_objects <- c("population_order", "comparison_specs", "make_species_tree", "migration_pairs", "migration_parameter_names", "required_parameter_columns")
 missing_objects <- required_objects[!vapply(required_objects, exists, logical(1), inherits = FALSE)]
 if (length(missing_objects)) stop("Model file is missing: ", paste(missing_objects, collapse = ", "))
 
 p <- read_csv(param_file, show_col_types = FALSE)
+missing_cols <- setdiff(required_parameter_columns, names(p))
+if (length(missing_cols)) stop("Parameter table is missing columns: ", paste(missing_cols, collapse = ", "))
+if (!identical(as.character(p$chromosome), paste0("ch", 1:9))) stop("Expected chromosome rows ch1 through ch9 in order")
+
 dir.create("controls", showWarnings = FALSE)
 dir.create(file.path("output", "trees"), recursive = TRUE, showWarnings = FALSE)
 dir.create("imap", showWarnings = FALSE)
@@ -47,9 +51,11 @@ make_ctl <- function(row, spec) {
   treefile <- file.path("output", "trees", paste0(row$chromosome, "_", spec$comparison, "_", spec$config, ".tree.txt"))
   tree <- make_species_tree(row)
   mig <- vapply(migration_pairs, function(pair) {
-    nm <- paste0("W_", pair[1], "_to_", pair[2])
-    if (!nm %in% names(row)) stop("Missing parameter column: ", nm)
-    sprintf("            %s %s %.10g", pair[1], pair[2], row[[nm]])
+    edge_name <- paste0("W_", pair[1], "_to_", pair[2])
+    param_name <- unname(migration_parameter_names[edge_name])
+    if (is.na(param_name) || !nzchar(param_name)) stop("No parameter mapping for migration edge: ", edge_name)
+    if (!param_name %in% names(row)) stop("Missing parameter column: ", param_name)
+    sprintf("            %s %s %.10g", pair[1], pair[2], row[[param_name]])
   }, character(1))
   paste(c(
     "seed = -1",
@@ -72,4 +78,4 @@ for (i in seq_len(nrow(p))) {
     writeLines(make_ctl(row, spec), out)
   }
 }
-message("Generated PoOcPu1 gdi controls in poocpu/controls/")
+message("Generated 36 PoOcPu1 gdi controls in poocpu/controls/")
