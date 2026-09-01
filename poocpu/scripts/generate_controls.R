@@ -14,7 +14,7 @@ param_file <- "parameters/h4d-s47-p9-means.csv"
 model_file <- "model/poocpu_model.R"
 if (!file.exists(param_file)) stop("Missing ", param_file, ". Add chromosome-specific H4d posterior means first.")
 if (!file.exists(model_file)) stop("Missing ", model_file, ". Add the exact PoOcPu1 demographic model specification first.")
-source(model_file)
+source(model_file, local = TRUE)
 
 required_objects <- c("population_order", "comparison_specs", "make_species_tree", "migration_pairs", "migration_parameter_names", "required_parameter_columns")
 missing_objects <- required_objects[!vapply(required_objects, exists, logical(1), inherits = FALSE)]
