@@ -4,6 +4,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(purrr)
   library(tibble)
+  library(tidyr)
 })
 
 cmd_args <- commandArgs(trailingOnly = FALSE)
@@ -16,8 +17,17 @@ setwd(intg_dir)
 bpp <- Sys.getenv("BPP_BIN", unset = "bpp")
 keep_trees <- tolower(Sys.getenv("KEEP_TREES", unset = "false")) %in% c("1", "true", "yes", "y")
 
-if (!all(file.exists(file.path("controls", paste0("ch", rep(1:9, each = 2), "_", rep(c("aab", "abb"), 9), ".ctl"))))) {
-  system2("Rscript", file.path("scripts", "generate_controls.R"))
+expected_controls <- unlist(lapply(paste0("ch", 1:9), function(chrom) {
+  c(
+    file.path("controls", paste0(chrom, "_intg_aab.ctl")),
+    file.path("controls", paste0(chrom, "_intg_abb.ctl")),
+    file.path("controls", paste0(chrom, "_ca_hook_aab.ctl")),
+    file.path("controls", paste0(chrom, "_ca_hook_abb.ctl"))
+  )
+}))
+if (!all(file.exists(expected_controls))) {
+  status <- system2("Rscript", file.path("scripts", "generate_controls.R"))
+  if (status != 0) stop("Control generation failed")
 }
 
 bpp_test <- suppressWarnings(system2(bpp, "--version", stdout = TRUE, stderr = TRUE))
@@ -25,13 +35,30 @@ status <- attr(bpp_test, "status")
 if (!is.null(status) && status != 0) stop("BPP executable could not be run. Set BPP_BIN to the full path to bpp.")
 
 gdi_from_gtree <- function(fin, focal_population, tau) {
-  lines <- read_lines(fin, progress = FALSE) |> str_replace_all("\\^[A-Za-z0-9_]+", "")
+  lines <- read_lines(fin, progress = FALSE) |>
+    str_replace_all("\\^[A-Za-z0-9_]+", "")
   number <- "[0-9.eE+-]+"
-  pattern <- paste0("\\(", focal_population, ":(", number, "),", focal_population, ":(", number, ")\\)")
+
+  # With two samples from the focal population, G1a occurs when they form a cherry.
+  # In BPP's simulated Newick trees, their equal terminal branch length is the
+  # coalescence time t1 from the present to the focal-pair coalescent event.
+  pattern <- paste0(
+    "\\(", focal_population, ":(", number, "),",
+    focal_population, ":(", number, ")\\)"
+  )
   m <- str_match(lines, pattern)
-  t1 <- suppressWarnings(as.numeric(m[, 2]))
-  focal_pair_first <- !is.na(t1)
-  success <- focal_pair_first & t1 < tau
+  t1_left <- suppressWarnings(as.numeric(m[, 2]))
+  t1_right <- suppressWarnings(as.numeric(m[, 3]))
+  focal_pair_first <- !is.na(t1_left)
+
+  # Sanity check: the two terminal lengths of a focal cherry should be equal.
+  unequal <- focal_pair_first & abs(t1_left - t1_right) > 1e-10
+  if (any(unequal, na.rm = TRUE)) {
+    stop("Unexpected unequal terminal branch lengths in focal cherries: ", fin)
+  }
+
+  success <- focal_pair_first & t1_left < tau
+
   tibble(
     n_gene_trees = length(lines),
     n_focal_pair_first = sum(focal_pair_first),
@@ -40,7 +67,7 @@ gdi_from_gtree <- function(fin, focal_population, tau) {
   )
 }
 
-extract_tau <- function(ctl_file, node = "IIH") {
+extract_tau <- function(ctl_file, node) {
   txt <- paste(read_lines(ctl_file), collapse = " ")
   pattern <- paste0(node, ":([0-9.eE+-]+)")
   x <- str_match(txt, pattern)[, 2]
@@ -48,29 +75,64 @@ extract_tau <- function(ctl_file, node = "IIH") {
   as.numeric(x)
 }
 
-run_one <- function(chrom, config) {
-  ctl <- file.path("controls", paste0(chrom, "_", config, ".ctl"))
-  treefile <- file.path("output", "trees", paste0(chrom, "_", config, ".tree.txt"))
+comparison_specs <- tibble::tribble(
+  ~comparison, ~config, ~focal_population, ~tau_node,
+  "intg_N_vs_CA", "aab", "intg_nGL_Nslope", "IIH",
+  "intg_N_vs_CA", "abb", "intg_CAswGL",      "IIH",
+  "CA_vs_hook",   "aab", "intg_CAswGL",      "IH",
+  "CA_vs_hook",   "abb", "hook",              "IH"
+)
+
+control_prefix <- function(comparison) {
+  if (comparison == "intg_N_vs_CA") "intg" else "ca_hook"
+}
+
+run_one <- function(chrom, comparison, config, focal_population, tau_node) {
+  prefix <- control_prefix(comparison)
+  ctl <- file.path("controls", paste0(chrom, "_", prefix, "_", config, ".ctl"))
+  treefile <- file.path("output", "trees", paste0(chrom, "_", prefix, "_", config, ".tree.txt"))
   dir.create(dirname(treefile), recursive = TRUE, showWarnings = FALSE)
   if (file.exists(treefile)) unlink(treefile)
-  focal <- if (config == "aab") "intg_nGL_Nslope" else "intg_CAswGL"
-  tau <- extract_tau(ctl, "IIH")
-  message("Running ", chrom, " ", config, " (focal = ", focal, ", tau_IIH = ", tau, ")")
+  tau <- extract_tau(ctl, tau_node)
+
+  message(
+    "Running ", chrom, " ", comparison, " ", config,
+    " (focal = ", focal_population, ", tau_", tau_node, " = ", tau, ")"
+  )
+
   status <- system2(bpp, c("--quiet", "--simulate", ctl))
-  if (status != 0) stop("BPP failed for ", chrom, " ", config)
+  if (status != 0) stop("BPP failed for ", chrom, " ", comparison, " ", config)
   if (!file.exists(treefile)) stop("BPP did not create expected tree file: ", treefile)
-  score <- gdi_from_gtree(treefile, focal, tau)
+
+  score <- gdi_from_gtree(treefile, focal_population, tau)
   if (!keep_trees) unlink(treefile)
-  tibble(chromosome = chrom, configuration = config, focal_population = focal, tau_IIH = tau) |> bind_cols(score)
+
+  tibble(
+    chromosome = chrom,
+    comparison = comparison,
+    configuration = config,
+    focal_population = focal_population,
+    tau_node = tau_node,
+    tau = tau
+  ) |>
+    bind_cols(score)
 }
 
 chromosomes <- paste0("ch", 1:9)
-raw <- map_dfr(chromosomes, function(chrom) bind_rows(run_one(chrom, "aab"), run_one(chrom, "abb")))
+raw <- map_dfr(chromosomes, function(chrom) {
+  pmap_dfr(comparison_specs, function(comparison, config, focal_population, tau_node) {
+    run_one(chrom, comparison, config, focal_population, tau_node)
+  })
+})
+
 dir.create("output", showWarnings = FALSE)
 write_csv(raw, file.path("output", "gdi_intg_long.csv"))
+
 wide <- raw |>
-  select(chromosome, focal_population, gdi) |>
-  tidyr::pivot_wider(names_from = focal_population, values_from = gdi) |>
-  rename(gdi_intg_nGL_Nslope = intg_nGL_Nslope, gdi_intg_CAswGL = intg_CAswGL)
+  select(chromosome, comparison, focal_population, gdi) |>
+  mutate(column = paste0("gdi_", comparison, "__", focal_population)) |>
+  select(-focal_population) |>
+  pivot_wider(names_from = column, values_from = gdi)
+
 write_csv(wide, file.path("output", "gdi_intg.csv"))
 print(wide)
