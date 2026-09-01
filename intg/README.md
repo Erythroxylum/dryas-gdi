@@ -1,23 +1,31 @@
 # Integrifolia gdi analysis
 
-## Question
+## Questions
 
-This analysis tests genealogical divergence between two geographically structured *Dryas integrifolia* populations:
+This analysis evaluates genealogical divergence among three lineages in the `aih-prior3-s16-p4` demographic model:
 
-- `intg_nGL_Nslope` — northern Greenland / North Slope population
-- `intg_CAswGL` — Canadian Arctic / southwest Greenland population
+- `intg_nGL_Nslope` — northern Greenland / North Slope *Dryas integrifolia*
+- `intg_CAswGL` — Canadian Arctic / southwest Greenland *D. integrifolia*
+- `hook` — *D. hookeriana*
 
-Our working biological hypothesis is that these are strongly structured populations of the same species. The fitted population topology is paraphyletic with respect to `hook` (*D. hookeriana*), creating two possible biological interpretations: (1) *D. hookeriana* represents a derived/peripheral lineage that arose from within a structured *D. integrifolia*, or (2) gene flow involving `hook` and `intg_CAswGL` has affected the inferred population topology. The present gdi test focuses specifically on whether the two non-sister *integrifolia* populations show the level of genealogical divergence expected of distinct species.
+The fitted population topology is:
+
+```text
+(ajan_alas,(intg_nGL_Nslope,(intg_CAswGL,hook)IH)IIH)R;
+```
+
+This creates two complementary gdi questions:
+
+1. Are the two geographically structured, non-sister *integrifolia* populations genealogically divergent enough to behave as distinct species?
+2. Is *D. hookeriana* genealogically distinct from its immediate population-tree sister, `intg_CAswGL`?
+
+Our working biological hypothesis is that the two *integrifolia* lineages are strongly structured populations of the same species. The paraphyletic topology permits at least two biological interpretations: (1) *D. hookeriana* represents a derived/peripheral lineage that arose from within a structured *D. integrifolia*, or (2) gene flow has affected the inferred population topology.
 
 ## Fitted demographic model
 
 Parameter source: `aih-prior3-s16-p4`.
 
-We prefer `aih-prior3` over `aih-prior2` because the prior3 model gave a substantially more stable root-age posterior, whereas the prior2 root-age posterior was broad and close to its prior. The fitted guide-tree topology is:
-
-```text
-(ajan_alas,(intg_nGL_Nslope,(intg_CAswGL,hook)IH)IIH)R;
-```
+We prefer `aih-prior3` over `aih-prior2` because the prior3 model gave a substantially more stable root-age posterior, whereas the prior2 root-age posterior was broad and close to its prior.
 
 The A00 model included 18 directional migration parameters. In the prior3 analysis, the only migration edges supported across all chromosomes were the two directions between the *integrifolia* populations:
 
@@ -26,46 +34,48 @@ intg_nGL_Nslope -> intg_CAswGL
 intg_CAswGL     -> intg_nGL_Nslope
 ```
 
-For gdi simulations we nevertheless retain the **full fitted MSC-M model**, including all modeled populations, internal nodes, and migration parameters, because all of these can affect the distribution of focal gene trees.
+For gdi simulations we retain the **full fitted MSC-M model**, including all modeled populations, internal nodes, and migration parameters, because all of these can affect the distribution of focal gene trees.
 
-## Why three sequences?
+## Three-sequence simulations
 
-Kornai et al. (2024), Eq. 13, recommends simulation of only three focal sequences when gene flow from other populations makes analytical calculation of gdi impractical. Yuttapong Thawornwattana confirmed that this is the appropriate design here: retain the full demographic model but simulate three sequences from the two lineages being tested, in two sets (`aab` and `abb`).
+Following Kornai et al. (2024), Eq. 13, gdi is estimated by retaining the full demographic model while simulating only three focal sequences at a time. Yuttapong Thawornwattana confirmed this design: use two complementary configurations, `aab` and `abb`, for each pair being tested.
 
-For the non-sister *integrifolia* populations, their most recent common ancestral population is node `IIH`, so `tau_IIH` is the divergence-time threshold in both directions.
+### `intg_nGL_Nslope` vs `intg_CAswGL`
 
-### aab
-
-```text
-intg_nGL_Nslope, intg_nGL_Nslope, intg_CAswGL
-```
-
-This estimates:
+These are non-sister populations whose MRCA is node `IIH`, so `tau_IIH` is used as the divergence-time threshold in both directions.
 
 ```text
-gdi_N = P(the two intg_nGL_Nslope sequences coalesce first and before tau_IIH)
+aab: intg_nGL_Nslope, intg_nGL_Nslope, intg_CAswGL
+abb: intg_nGL_Nslope, intg_CAswGL, intg_CAswGL
 ```
 
-### abb
+These estimate:
 
 ```text
-intg_nGL_Nslope, intg_CAswGL, intg_CAswGL
+gdi_N  = P(two intg_nGL_Nslope sequences coalesce first and before tau_IIH)
+gdi_CA = P(two intg_CAswGL sequences coalesce first and before tau_IIH)
 ```
 
-This estimates:
+This follows Kornai et al.'s treatment of gdi between non-sister populations in a potentially paraphyletic species.
+
+### `intg_CAswGL` vs `hook`
+
+These are sisters at node `IH`, so `tau_IH` is the divergence-time threshold.
 
 ```text
-gdi_CA = P(the two intg_CAswGL sequences coalesce first and before tau_IIH)
+aab: intg_CAswGL, intg_CAswGL, hook
+abb: intg_CAswGL, hook, hook
 ```
 
-This treatment follows Kornai et al.'s explicit treatment of gdi between non-sister populations in a potentially paraphyletic species.
+These estimate directional gdi for `intg_CAswGL` and `hook` relative to one another.
 
 ## Reproducible files
 
 - `parameters/aih-prior3-s16-p4-means.csv` — chromosome-specific posterior means used to parameterize simulations.
-- `imap/aab.imap.txt` and `imap/abb.imap.txt` — three-sequence sampling maps.
-- `scripts/generate_controls.R` — generates the 18 chromosome/configuration-specific BPP controls.
+- `imap/` — three-sequence sampling maps for both comparisons.
+- `scripts/generate_controls.R` — generates 36 chromosome/configuration-specific BPP controls.
 - `scripts/run_gdi.R` — runs BPP simulations and scores Eq. 13 gdi.
+- `scripts/summarize_results.R` — reformats results to one row per chromosome, writes summary statistics, and produces a violin/point plot across chromosomes.
 
 Generate controls with:
 
@@ -73,18 +83,11 @@ Generate controls with:
 Rscript intg/scripts/generate_controls.R
 ```
 
-This creates:
-
-```text
-intg/controls/ch1_aab.ctl ... ch9_aab.ctl
-intg/controls/ch1_abb.ctl ... ch9_abb.ctl
-```
-
 Each control retains the full four-population/18-migration-edge demographic model and simulates 1,000,000 gene trees of nominal locus length 50.
 
 ## Running the analysis
 
-BPP 4.8.7 was used during development. Set the path to the executable, for example on Dawson's Mac:
+BPP 4.8.7 was used during development. Set the executable path, for example:
 
 ```bash
 export BPP_BIN=/Users/dawsonwhite/programs/bpp-4.8.7-macos-aarch64/bin/bpp
@@ -96,19 +99,34 @@ Then run:
 Rscript intg/scripts/run_gdi.R
 ```
 
-The script generates the controls if needed, runs all 18 simulations, calculates Eq. 13 gdi values, and writes:
+The script calculates all four directional gdi estimates for each chromosome and writes:
 
 ```text
-intg/output/gdi_intg.csv
 intg/output/gdi_intg_long.csv
+intg/output/gdi_intg.csv
 ```
 
-By default the large simulated gene-tree files are deleted after scoring. To retain them:
+By default large simulated gene-tree files are deleted after scoring. To retain them:
 
 ```bash
 KEEP_TREES=true Rscript intg/scripts/run_gdi.R
 ```
 
-## Additional test to consider
+## Summarizing existing results
 
-A separate sister-lineage comparison can evaluate `intg_CAswGL` versus `hook` using node `IH` as the divergence threshold. This addresses whether *D. hookeriana* is genealogically distinct from its immediate population-tree sister and is conceptually separate from the present non-sister *integrifolia* test.
+The simulations do **not** need to be rerun to fix the wide output table or make figures. Starting from `gdi_intg_long.csv`, run:
+
+```bash
+Rscript intg/scripts/summarize_results.R
+```
+
+This writes:
+
+```text
+intg/output/gdi_intg.csv
+intg/output/gdi_intg_summary.csv
+intg/output/figures/gdi_intg_violin.pdf
+intg/output/figures/gdi_intg_violin.png
+```
+
+`gdi_intg.csv` has one row per chromosome and four directional gdi columns. The violin plot summarizes the nine chromosome-specific estimates for each directional test, overlays the individual chromosome estimates and their mean, and marks the conventional 0.2 and 0.7 gdi thresholds.
