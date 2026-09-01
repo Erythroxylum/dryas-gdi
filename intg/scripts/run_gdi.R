@@ -39,9 +39,6 @@ gdi_from_gtree <- function(fin, focal_population, tau) {
     str_replace_all("\\^[A-Za-z0-9_]+", "")
   number <- "[0-9.eE+-]+"
 
-  # With two samples from the focal population, G1a occurs when they form a cherry.
-  # In BPP's simulated Newick trees, their equal terminal branch length is the
-  # coalescence time t1 from the present to the focal-pair coalescent event.
   pattern <- paste0(
     "\\(", focal_population, ":(", number, "),",
     focal_population, ":(", number, ")\\)"
@@ -51,7 +48,6 @@ gdi_from_gtree <- function(fin, focal_population, tau) {
   t1_right <- suppressWarnings(as.numeric(m[, 3]))
   focal_pair_first <- !is.na(t1_left)
 
-  # Sanity check: the two terminal lengths of a focal cherry should be equal.
   unequal <- focal_pair_first & abs(t1_left - t1_right) > 1e-10
   if (any(unequal, na.rm = TRUE)) {
     stop("Unexpected unequal terminal branch lengths in focal cherries: ", fin)
@@ -129,10 +125,16 @@ dir.create("output", showWarnings = FALSE)
 write_csv(raw, file.path("output", "gdi_intg_long.csv"))
 
 wide <- raw |>
-  select(chromosome, comparison, focal_population, gdi) |>
-  mutate(column = paste0("gdi_", comparison, "__", focal_population)) |>
-  select(-focal_population) |>
-  pivot_wider(names_from = column, values_from = gdi)
+  mutate(column = case_when(
+    comparison == "intg_N_vs_CA" & focal_population == "intg_nGL_Nslope" ~ "gdi_intg_N_vs_CA__intg_nGL_Nslope",
+    comparison == "intg_N_vs_CA" & focal_population == "intg_CAswGL" ~ "gdi_intg_N_vs_CA__intg_CAswGL",
+    comparison == "CA_vs_hook" & focal_population == "intg_CAswGL" ~ "gdi_CA_vs_hook__intg_CAswGL",
+    comparison == "CA_vs_hook" & focal_population == "hook" ~ "gdi_CA_vs_hook__hook",
+    TRUE ~ NA_character_
+  )) |>
+  select(chromosome, column, gdi) |>
+  pivot_wider(names_from = column, values_from = gdi) |>
+  arrange(factor(chromosome, levels = chromosomes))
 
 write_csv(wide, file.path("output", "gdi_intg.csv"))
 print(wide)
