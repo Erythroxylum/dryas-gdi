@@ -62,7 +62,7 @@ names(seqfiles) <- chromosomes
 # Read the original four-population sample map. The s20 dataset contains 20
 # individuals assigned to ajan_Interior, ajan_Seward, alas_Interior, or
 # alas_Seward.
-imap <- read_table2(
+imap <- read_table(
   source_imap,
   col_names = c("sample", "population"),
   col_types = cols(.default = col_character())
@@ -100,8 +100,8 @@ write.table(
 new_imap <- normalizePath(new_imap, mustWork = TRUE)
 
 # Read the empirical BPP control that supplied the original data/MCMC settings.
-# We preserve settings such as phase, nloci, cleandata, theta/tau priors,
-# finetune, burnin, sampfreq, and nsample unless explicitly replaced below.
+# We preserve nloci, cleandata, theta/tau priors, finetune, burnin, sampfreq,
+# and nsample. Model-dependent directives such as phase are updated below.
 template_lines <- read_lines(template_ctl)
 
 # Helper: replace exactly one simple key = value directive in the template.
@@ -176,6 +176,11 @@ for (chrom in chromosomes) {
   lines <- replace_species_block(lines)
   lines <- replace_migration_block(lines)
 
+  # The phase vector has one entry per population/species in this BPP control.
+  # Because the model now has two species, retain the original unphased setting
+  # but reduce the four-population vector "1 1 1 1" to "1 1".
+  lines <- replace_directive(lines, "phase", "1 1")
+
   # Match the final m3-prior2 demographic analysis used for our four-population
   # validation. A later prior-sensitivity run can repeat this fit with G(2,0.1).
   lines <- replace_directive(lines, "wprior", "2 0.01")
@@ -187,6 +192,7 @@ for (chrom in chromosomes) {
     paste0("# Source sample map: ", source_imap),
     paste0("# Source BPP template: ", template_ctl),
     "# Interior and Seward are collapsed within species; migration is fitted in both directions.",
+    "# Phase = 1 1 because the collapsed model has two unphased species.",
     "# Migration prior: W ~ Gamma(2, 0.01), matching m3-prior2.",
     lines
   )
