@@ -1,15 +1,24 @@
-# Build empirical BPP A00 controls for a two-lineage ajanensis vs alaskensis IM model.
+# Build empirical BPP A00 controls for the species-level ajanensis vs alaskensis
+# isolation-with-migration (IM) model.
 #
-# This does NOT invent a new dataset. Instead, it takes the existing four-population
-# ajan/alaskensis empirical controls and imap, collapses Interior + Seward within
-# each taxon, and preserves the original sequence files and MCMC settings.
+# This analysis fits a NEW demographic model to the empirical chromosome data:
 #
-# Usage:
-#   Rscript scripts/build_fit_controls.R /path/to/four_pop_ctl_dir /path/to/four_pop_imap.txt
+#   (ajan, alas)R;
 #
-# The source control directory should contain one final empirical BPP control for
-# each chromosome ch1-ch9. Prefer the W ~ G(2,0.1) / prior3 controls because
-# Yuttapong found their root-age estimates more stable than prior2.
+# Interior and Seward samples are collapsed within each species, and BPP estimates
+# species-level theta, tau_R, and bidirectional migration directly from the data.
+# We do not average parameters from the fitted four-population model.
+#
+# Usage from the repository root:
+#   Rscript ajan-alas/species-im/scripts/build_fit_controls.R \
+#     /path/to/ajan-alas-s20/multilocus \
+#     /path/to/ajan-alas-s20-p4.imap.txt \
+#     /path/to/bpp-a00-ajan-alas-s20-p4.ctl
+#
+# The data directory must contain ch1.txt through ch9.txt. The source control is
+# used as a template for the empirical-data and MCMC settings. We explicitly set
+# W ~ Gamma(2, 0.01), matching the final m3-prior2 four-population analysis that
+# supplied the validation parameters used elsewhere in this repository.
 
 suppressPackageStartupMessages({
   library(readr)
@@ -17,7 +26,21 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-# Locate this species-IM analysis directory from the script location.
+# Resolve all user-supplied paths before changing the working directory. This
+# allows both absolute and repository-relative paths to work predictably.
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) != 3) {
+  stop(
+    "Usage: Rscript ajan-alas/species-im/scripts/build_fit_controls.R ",
+    "/path/to/multilocus /path/to/imap.txt /path/to/template.ctl"
+  )
+}
+data_dir <- normalizePath(args[1], mustWork = TRUE)
+source_imap <- normalizePath(args[2], mustWork = TRUE)
+template_ctl <- normalizePath(args[3], mustWork = TRUE)
+
+# Locate this species-IM analysis directory from the script path. Generated
+# controls, sample maps, and outputs are kept inside this workflow directory.
 cmd_args <- commandArgs(trailingOnly = FALSE)
 file_arg <- grep("^--file=", cmd_args, value = TRUE)
 if (length(file_arg) != 1) stop("Could not determine script path")
@@ -25,25 +48,28 @@ script_path <- normalizePath(sub("^--file=", "", file_arg))
 analysis_dir <- dirname(dirname(script_path))
 setwd(analysis_dir)
 
-# Read the two required local source paths.
-args <- commandArgs(trailingOnly = TRUE)
-if (length(args) != 2) {
-  stop(
-    "Usage: Rscript scripts/build_fit_controls.R ",
-    "/path/to/four_pop_ctl_dir /path/to/four_pop_imap.txt"
-  )
+# Verify that all nine empirical chromosome data files are present before we
+# generate any controls.
+chromosomes <- paste0("ch", 1:9)
+seqfiles <- file.path(data_dir, paste0(chromosomes, ".txt"))
+missing_seqfiles <- seqfiles[!file.exists(seqfiles)]
+if (length(missing_seqfiles)) {
+  stop("Missing chromosome data files: ", paste(missing_seqfiles, collapse = ", "))
 }
-source_ctl_dir <- normalizePath(args[1], mustWork = TRUE)
-source_imap <- normalizePath(args[2], mustWork = TRUE)
+seqfiles <- normalizePath(seqfiles)
+names(seqfiles) <- chromosomes
 
-# Read the original imap as two whitespace-delimited columns: sample and population.
+# Read the original four-population sample map. The s20 dataset contains 20
+# individuals assigned to ajan_Interior, ajan_Seward, alas_Interior, or
+# alas_Seward.
 imap <- read_table2(
   source_imap,
   col_names = c("sample", "population"),
   col_types = cols(.default = col_character())
 )
 
-# Collapse geographic populations into the two species-level lineages.
+# Collapse geography within each taxon so the empirical fit estimates the two
+# species-level lineages requested for gdi: ajan and alas.
 collapsed <- imap |>
   mutate(population = case_when(
     population %in% c("ajan_Interior", "ajan_Seward") ~ "ajan",
@@ -55,11 +81,12 @@ if (any(is.na(collapsed$population))) {
   stop("Unexpected populations in source imap: ", paste(bad, collapse = ", "))
 }
 
-# Count samples automatically rather than assuming the source design.
+# Derive species-level sample counts from the map rather than hard-coding them.
+# For the current s20 data these should be 9 ajan and 11 alas individuals.
 counts <- table(factor(collapsed$population, levels = c("ajan", "alas")))
-if (any(counts == 0)) stop("Both ajan and alas must have sampled sequences")
+if (any(counts == 0)) stop("Both ajan and alas must have sampled individuals")
 
-# Write the species-level imap used by every chromosome.
+# Write one collapsed sample map used by all nine chromosome fits.
 dir.create("fit/imap", recursive = TRUE, showWarnings = FALSE)
 new_imap <- normalizePath("fit/imap/ajan_alas.imap.txt", mustWork = FALSE)
 write.table(
@@ -72,38 +99,25 @@ write.table(
 )
 new_imap <- normalizePath(new_imap, mustWork = TRUE)
 
-# Helper: identify the unique source control corresponding to one chromosome.
-# We intentionally fail if several candidate files match, because silently choosing
-# the wrong BPP model would invalidate the fit.
-find_ctl <- function(chrom) {
-  files <- list.files(source_ctl_dir, pattern = "\\.ctl$", recursive = TRUE, full.names = TRUE)
-  hit <- files[str_detect(basename(files), regex(paste0("(^|[^0-9])", chrom, "([^0-9]|$)"), ignore_case = TRUE))]
-  if (length(hit) != 1) {
-    stop(
-      "Expected exactly one source control for ", chrom, "; found ", length(hit),
-      if (length(hit)) paste0(": ", paste(hit, collapse = ", ")) else ""
-    )
-  }
-  normalizePath(hit)
-}
+# Read the empirical BPP control that supplied the original data/MCMC settings.
+# We preserve settings such as phase, nloci, cleandata, theta/tau priors,
+# finetune, burnin, sampfreq, and nsample unless explicitly replaced below.
+template_lines <- read_lines(template_ctl)
 
-# Helper: make relative input-file paths in copied controls absolute so the new
-# controls can run from ajan-alas/species-im/fit/controls without losing access
-# to the original chromosome data.
-absolutize_directive <- function(lines, key, source_dir) {
+# Helper: replace exactly one simple key = value directive in the template.
+replace_directive <- function(lines, key, value, required = TRUE) {
   idx <- grep(paste0("^\\s*", key, "\\s*="), lines, ignore.case = TRUE)
-  if (!length(idx)) return(lines)
-  for (i in idx) {
-    value <- str_trim(sub("^[^=]+=[[:space:]]*", "", lines[i]))
-    if (nzchar(value) && !str_detect(value, "^/")) {
-      value <- normalizePath(file.path(source_dir, value), mustWork = FALSE)
-      lines[i] <- paste(key, "=", value)
-    }
+  if (!length(idx)) {
+    if (required) stop("Template control is missing directive: ", key)
+    return(lines)
   }
+  if (length(idx) != 1) stop("Expected exactly one ", key, " directive")
+  lines[idx] <- paste(key, "=", value)
   lines
 }
 
-# Helper: replace the three-line species&tree block in a BPP control.
+# Helper: replace the original three-line four-population species block with the
+# two-lineage species model and the sample counts derived from the collapsed imap.
 replace_species_block <- function(lines) {
   i <- grep("^\\s*species&tree\\s*=", lines, ignore.case = TRUE)
   if (length(i) != 1) stop("Expected exactly one species&tree block")
@@ -117,8 +131,9 @@ replace_species_block <- function(lines) {
   append(lines[-c(i:(i + 2))], replacement, after = i - 1)
 }
 
-# Helper: replace the fitted four-pop migration graph with the two-direction IM graph.
-# Existing migration priors elsewhere in the source control are intentionally retained.
+# Helper: replace the original multi-edge migration graph with the species-level
+# bidirectional IM graph. These are the two migration rates required for the
+# subsequent migration-aware gdi calculation.
 replace_migration_block <- function(lines) {
   i <- grep("^\\s*migration\\s*=", lines, ignore.case = TRUE)
   if (length(i) != 1) stop("Expected exactly one migration block")
@@ -136,49 +151,49 @@ replace_migration_block <- function(lines) {
   append(lines[-c(i:end)], replacement, after = i - 1)
 }
 
-# Create one two-population empirical control for each chromosome while preserving
-# the source model's sequence file, mutation model, priors, burnin, sampling, etc.
+# Create one empirical A00 control per chromosome. Each fit uses the same 20
+# individuals and collapsed species map but a different chromosome-specific
+# multilocus sequence file.
 dir.create("fit/controls", recursive = TRUE, showWarnings = FALSE)
 dir.create("fit/output", recursive = TRUE, showWarnings = FALSE)
 
-for (chrom in paste0("ch", 1:9)) {
-  source_ctl <- find_ctl(chrom)
-  source_dir <- dirname(source_ctl)
-  lines <- read_lines(source_ctl)
+for (chrom in chromosomes) {
+  lines <- template_lines
 
-  # Preserve access to chromosome data after the control is copied.
-  for (key in c("seqfile", "locusratefile", "heredityfile")) {
-    lines <- absolutize_directive(lines, key, source_dir)
-  }
+  # Point BPP directly to the actual chromosome-specific empirical data and to
+  # the collapsed ajan/alas sample map.
+  lines <- replace_directive(lines, "seqfile", seqfiles[[chrom]])
+  lines <- replace_directive(lines, "Imapfile", new_imap)
 
-  # Point the fit to the collapsed species-level sample map.
-  imap_idx <- grep("^\\s*Imapfile\\s*=", lines, ignore.case = TRUE)
-  if (length(imap_idx) != 1) stop("Expected exactly one Imapfile directive in ", source_ctl)
-  lines[imap_idx] <- paste("Imapfile =", new_imap)
+  # Give every chromosome a unique output prefix inside this workflow so fits do
+  # not overwrite one another. The original template uses jobname rather than
+  # separate outfile/mcmcfile directives.
+  job_prefix <- normalizePath(file.path("fit/output", chrom), mustWork = FALSE)
+  lines <- replace_directive(lines, "jobname", job_prefix)
 
-  # Replace only the biological model components: species tree and migration graph.
+  # Replace only the biological population model: four geographic populations
+  # become two species, with bidirectional species-level migration.
   lines <- replace_species_block(lines)
   lines <- replace_migration_block(lines)
 
-  # Keep each chromosome's BPP outputs separate and inside this repository workflow.
-  mcmc_idx <- grep("^\\s*mcmcfile\\s*=", lines, ignore.case = TRUE)
-  if (length(mcmc_idx) == 1) {
-    lines[mcmc_idx] <- paste("mcmcfile =", normalizePath(file.path("fit/output", paste0(chrom, ".mcmc.txt")), mustWork = FALSE))
-  }
-  outfile_idx <- grep("^\\s*outfile\\s*=", lines, ignore.case = TRUE)
-  if (length(outfile_idx) == 1) {
-    lines[outfile_idx] <- paste("outfile =", normalizePath(file.path("fit/output", paste0(chrom, ".out.txt")), mustWork = FALSE))
-  }
+  # Match the final m3-prior2 demographic analysis used for our four-population
+  # validation. A later prior-sensitivity run can repeat this fit with G(2,0.1).
+  lines <- replace_directive(lines, "wprior", "2 0.01")
 
-  # Record provenance at the top of every generated control.
+  # Add provenance and an explicit statement of the new fitted hypothesis.
   lines <- c(
-    paste0("# Generated species-level ajan vs alas IM control from: ", source_ctl),
-    "# Interior and Seward samples are collapsed within each species; bidirectional migration is fitted.",
+    paste0("# Species-level ajan vs alas IM fit for ", chrom),
+    paste0("# Empirical sequence file: ", seqfiles[[chrom]]),
+    paste0("# Source sample map: ", source_imap),
+    paste0("# Source BPP template: ", template_ctl),
+    "# Interior and Seward are collapsed within species; migration is fitted in both directions.",
+    "# Migration prior: W ~ Gamma(2, 0.01), matching m3-prior2.",
     lines
   )
 
   write_lines(lines, file.path("fit/controls", paste0(chrom, ".ctl")))
 }
 
-message("Built 9 empirical two-lineage IM controls in fit/controls/")
+message("Built 9 empirical species-level ajan vs alas IM controls in fit/controls/")
 message("Collapsed sample counts: ajan=", counts[["ajan"]], ", alas=", counts[["alas"]])
+message("Migration prior: W ~ Gamma(2, 0.01) [m3-prior2]")
