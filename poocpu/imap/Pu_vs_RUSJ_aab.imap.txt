@@ -1,0 +1,3 @@
+pu1	Pu
+pu2	Pu
+ru_sj1	RU_SJ

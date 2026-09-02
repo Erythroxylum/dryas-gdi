@@ -1,0 +1,32 @@
+Detected CPU features: neon
+Usage: /Users/dawsonwhite/programs/bpp-4.8.7-macos-aarch64/bin/bpp [OPTIONS]
+
+General options:
+  --help                   display help information
+  --version                display version information
+  --quiet                  only output warnings and fatal errors to stderr
+  --cfile FILENAME         run analysis for the specified control file
+  --simulate FILENAME      run simulation for the specified control file
+  --resume FILENAME        resume analysis from a specified checkpoint file
+  --msci-create FILENAME   construct an MSci graph using a definitions file
+  --summary FILENAME       summarize results using specified control file
+
+Advanced options:
+  --arch SIMD              force specific vector instruction set (default: auto)
+  --bfdriver FILENAME      create control files to calculate marginal likelihood
+  --points INTEGER         number of G-L quadrature points (used with --bfdriver)
+  --no-pin                 do not pin threads to cores
+  --theta_mode INTEGER     definition of theta step lengths (default: 2)
+  --theta-prop STRING      prop. dist. for theta gibbs move ('mg_invg' or 'mg_gamma')
+  --theta-showeps          show individual step lengths/pjumps for each theta
+  --theta-slide-prob FLOAT frequency for theta sliding window move (default: 0.1)
+  --phi-slide-prob FLOAT   frequency for phi sliding window move (default: 0.1)
+  --wrate_mode INTEGER     definition of W step lengths (default: 1)
+  --wrate-slide-prob FLOAT frequency for W sliding window move (default: 0.1)
+  --wrate-showeps          show individual step lengths/pjumps for each W
+  --extend INTEGER         extend resumed analysis by number of MCMC samples
+  --keep-labels            keep original node labels when summarizing results
+
+bpp v4.8.7_macos_aarch64, 18GB RAM, 11 cores
+https://github.com/bpp/bpp
+

@@ -1,0 +1,3 @@
+intg_ngl_nslope1	intg_nGL_Nslope
+intg_ngl_nslope2	intg_nGL_Nslope
+intg_caswgl1	intg_CAswGL
