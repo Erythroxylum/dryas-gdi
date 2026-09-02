@@ -1,13 +1,13 @@
 # Species-level ajan vs alas IM fit for ch7
-# Empirical sequence file: /Users/dawsonwhite/Library/Mobile Documents/com~apple~CloudDocs/0Dryas/panDryas/BPP-yuttapong/bpp_may12/data/ajan-alas-s20/multilocus/ch7.txt
-# Source sample map: /Users/dawsonwhite/Library/Mobile Documents/com~apple~CloudDocs/0Dryas/panDryas/BPP-yuttapong/bpp_may12/imap/ajan-alas-s20-p4.imap.txt
-# Source BPP template: /Users/dawsonwhite/Library/Mobile Documents/com~apple~CloudDocs/0Dryas/panDryas/BPP-yuttapong/bpp_may12/ctl/bpp-a00-ajan-alas-s20-p4.ctl
+# Empirical sequence file: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/ajan-alas-s20/multilocus/ch7.txt
+# Source sample map: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/source/ajan-alas-s20-p4.imap.txt
+# Source BPP template: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/source/bpp-a00-ajan-alas-s20-p4.ctl
 # Interior and Seward are collapsed within species; migration is fitted in both directions.
 # Phase = 1 1 because the collapsed model has two unphased species.
 # Migration prior: W ~ Gamma(2, 0.01), matching m3-prior2.
           seed = -1
 
-seqfile = /Users/dawsonwhite/Library/Mobile Documents/com~apple~CloudDocs/0Dryas/panDryas/BPP-yuttapong/bpp_may12/data/ajan-alas-s20/multilocus/ch7.txt
+seqfile = /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/ajan-alas-s20/multilocus/ch7.txt
 Imapfile = /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/fit/imap/ajan_alas.imap.txt
 jobname = fit/output/ch7
 
