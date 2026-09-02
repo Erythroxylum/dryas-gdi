@@ -1,0 +1,3 @@
+ajan_interior1	ajan_Interior
+ajan_interior2	ajan_Interior
+ajan_seward1	ajan_Seward
