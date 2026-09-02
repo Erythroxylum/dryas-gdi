@@ -91,6 +91,9 @@ if (length(existing_outputs)) {
 
 # Run one chromosome fit. This function is executed inside a parallel worker.
 # BPP 4.8.x requires --cfile before an empirical-analysis control filename.
+# --no-pin is important when several independent BPP processes run together:
+# it leaves CPU placement to the operating system instead of allowing each BPP
+# process to pin itself independently to hardware threads.
 run_one_chromosome <- function(chrom, bpp_path, analysis_path) {
   setwd(analysis_path)
 
@@ -100,7 +103,7 @@ run_one_chromosome <- function(chrom, bpp_path, analysis_path) {
   start_time <- Sys.time()
   result <- system2(
     bpp_path,
-    args = c("--cfile", ctl),
+    args = c("--no-pin", "--cfile", ctl),
     stdout = log_file,
     stderr = log_file
   )
