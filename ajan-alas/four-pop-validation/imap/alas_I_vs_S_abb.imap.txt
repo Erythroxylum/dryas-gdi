@@ -1,0 +1,3 @@
+alas_interior1	alas_Interior
+alas_seward1	alas_Seward
+alas_seward2	alas_Seward

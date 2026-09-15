@@ -1,0 +1,8 @@
+suppressPackageStartupMessages({library(readr);library(dplyr);library(tidyr);library(ggplot2)})
+cmd_args<-commandArgs(trailingOnly=FALSE);file_arg<-grep("^--file=",cmd_args,value=TRUE);script_path<-normalizePath(sub("^--file=","",file_arg));setwd(dirname(dirname(script_path)))
+x<-read_csv("output/gdi_ajan_alas_long.csv",show_col_types=FALSE)
+wide<-x|>mutate(column=paste0("gdi_",comparison,"__",focal_population))|>select(chromosome,column,gdi)|>pivot_wider(names_from=column,values_from=gdi);write_csv(wide,"output/gdi_ajan_alas.csv")
+summary<-x|>group_by(comparison,focal_population)|>summarise(mean_gdi=mean(gdi),min_gdi=min(gdi),max_gdi=max(gdi),.groups="drop");write_csv(summary,"output/gdi_ajan_alas_summary.csv")
+dir.create("output/figures",recursive=TRUE,showWarnings=FALSE)
+p<-ggplot(x,aes(x=interaction(comparison,focal_population,sep="\n"),y=gdi))+geom_violin(trim=FALSE)+geom_jitter(width=.08,height=0,size=2)+stat_summary(fun=mean,geom="point",shape=23,size=3)+geom_hline(yintercept=c(.2,.7),linetype="dashed")+coord_cartesian(ylim=c(0,1))+labs(x=NULL,y="gdi",title="Dryas ajanensis-alaskensis gdi across chromosomes")+theme_bw()+theme(axis.text.x=element_text(angle=25,hjust=1))
+ggsave("output/figures/gdi_ajan_alas_violin.pdf",p,width=7,height=5);ggsave("output/figures/gdi_ajan_alas_violin.png",p,width=7,height=5,dpi=300);print(summary)
