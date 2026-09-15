@@ -1,0 +1,3 @@
+ajan1	ajan
+ajan2	ajan
+alas1	alas

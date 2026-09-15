@@ -1,5 +1,6 @@
 # Species-level ajan vs alas IM fit for ch5
 # Empirical sequence file: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/ajan-alas-s20/multilocus/ch5.txt
+# Empirical loci detected: 1397
 # Source sample map: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/source/ajan-alas-s20-p4.imap.txt
 # Source BPP template: /Users/dawsonwhite/Desktop/dryas-gdi/ajan-alas/species-im/source/bpp-a00-ajan-alas-s20-p4.ctl
 # Interior and Seward are collapsed within species; migration is fitted in both directions.
@@ -20,7 +21,7 @@ species&tree = 2 ajan alas
 phase = 1 1
 
        usedata = 1   * 0: no data(prior); 1:seq Like
-         nloci = 2000  * number of data sets in seqfile
+nloci = 1397
 
      cleandata = 0    * remove sites with ambiguity data (1:yes, 0:no)?
 

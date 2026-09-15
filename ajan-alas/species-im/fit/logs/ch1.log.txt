@@ -1,12 +1,12 @@
-Detected CPU features: neon
-bpp v4.8.7_macos_aarch64, 18GB RAM, 11 cores
+Detected CPU features: mmx sse sse2 sse3 ssse3 sse4.1 sse4.2 popcnt avx avx2
+bpp v4.8.7_macos_x86_64, 128GB RAM, 36 cores
 https://github.com/bpp/bpp
 
-Auto-selected SIMD ISA: NEON
+Auto-selected SIMD ISA: AVX2
 
 
 Starting timer..
-Seed: 1426640355 (randomly generated)
+Seed: 993285847 (randomly generated)
 Parsing species tree... Done
 Parsing phylip file... Done
 
@@ -2013,6 +2013,156 @@ Summary of alignments *before* phasing sequences:
   1998 |  JC69 |        20 |     77 |               2 |          3 |      Fixed 
   1999 |  JC69 |         2 |    538 |             261 |          4 |      Fixed 
   2000 |  JC69 |         2 |     87 |               4 |          2 |      Fixed 
+  2001 |  JC69 |        19 |     51 |               3 |          4 |      Fixed 
+  2002 |  JC69 |        17 |     64 |               3 |          4 |      Fixed 
+  2003 |  JC69 |         2 |    282 |               9 |          7 |      Fixed 
+  2004 |  JC69 |        20 |    103 |               6 |          7 |      Fixed 
+  2005 |  JC69 |         2 |    274 |             136 |          6 |      Fixed 
+  2006 |  JC69 |        19 |    528 |             269 |         29 |      Fixed 
+  2007 |  JC69 |        20 |    146 |               7 |          8 |      Fixed 
+  2008 |  JC69 |         2 |    281 |               6 |          2 |      Fixed 
+  2009 |  JC69 |        20 |    168 |               0 |          1 |      Fixed 
+  2010 |  JC69 |         2 |    280 |               7 |          6 |      Fixed 
+  2011 |  JC69 |        20 |    324 |             149 |          9 |      Fixed 
+  2012 |  JC69 |         4 |    184 |               1 |          2 |      Fixed 
+  2013 |  JC69 |         9 |    121 |              62 |         13 |      Fixed 
+  2014 |  JC69 |        14 |    355 |              18 |          9 |      Fixed 
+  2015 |  JC69 |         3 |    272 |               4 |          6 |      Fixed 
+  2016 |  JC69 |        18 |    393 |             149 |         37 |      Fixed 
+  2017 |  JC69 |         7 |    103 |               0 |          1 |      Fixed 
+  2018 |  JC69 |        20 |    223 |              87 |         13 |      Fixed 
+  2019 |  JC69 |        18 |    177 |              10 |         10 |      Fixed 
+  2020 |  JC69 |         7 |    227 |              25 |         16 |      Fixed 
+  2021 |  JC69 |         2 |    198 |              11 |          5 |      Fixed 
+  2022 |  JC69 |         4 |     63 |               0 |          2 |      Fixed 
+  2023 |  JC69 |        17 |     66 |               2 |          3 |      Fixed 
+  2024 |  JC69 |         2 |    114 |               2 |          3 |      Fixed 
+  2025 |  JC69 |         6 |    159 |               2 |          3 |      Fixed 
+  2026 |  JC69 |         2 |    371 |              64 |          6 |      Fixed 
+  2027 |  JC69 |         4 |    265 |              11 |         10 |      Fixed 
+  2028 |  JC69 |         6 |    287 |              28 |         11 |      Fixed 
+  2029 |  JC69 |         5 |    230 |               6 |          3 |      Fixed 
+  2030 |  JC69 |        20 |    149 |               9 |         10 |      Fixed 
+  2031 |  JC69 |         5 |    230 |              11 |          5 |      Fixed 
+  2032 |  JC69 |         5 |    226 |              20 |         12 |      Fixed 
+  2033 |  JC69 |         4 |    329 |             153 |         10 |      Fixed 
+  2034 |  JC69 |         9 |    178 |              87 |          6 |      Fixed 
+  2035 |  JC69 |         2 |     41 |               1 |          2 |      Fixed 
+  2036 |  JC69 |         2 |    142 |               5 |          3 |      Fixed 
+  2037 |  JC69 |         3 |    266 |              77 |          4 |      Fixed 
+  2038 |  JC69 |         9 |    150 |               8 |          9 |      Fixed 
+  2039 |  JC69 |         6 |    302 |               3 |          4 |      Fixed 
+  2040 |  JC69 |        20 |    351 |              21 |         13 |      Fixed 
+  2041 |  JC69 |         7 |    132 |              28 |         11 |      Fixed 
+  2042 |  JC69 |         2 |     36 |               0 |          1 |      Fixed 
+  2043 |  JC69 |         4 |     39 |               1 |          2 |      Fixed 
+  2044 |  JC69 |         5 |    105 |              12 |          5 |      Fixed 
+  2045 |  JC69 |         3 |    247 |               2 |          3 |      Fixed 
+  2046 |  JC69 |         8 |     82 |               7 |          9 |      Fixed 
+  2047 |  JC69 |        19 |    128 |               4 |          5 |      Fixed 
+  2048 |  JC69 |         9 |    282 |             144 |         16 |      Fixed 
+  2049 |  JC69 |        12 |     88 |               3 |          4 |      Fixed 
+  2050 |  JC69 |        20 |     76 |               6 |          7 |      Fixed 
+  2051 |  JC69 |         5 |    193 |               1 |          3 |      Fixed 
+  2052 |  JC69 |         2 |    222 |               1 |          2 |      Fixed 
+  2053 |  JC69 |         2 |    229 |               1 |          2 |      Fixed 
+  2054 |  JC69 |        19 |     88 |               2 |          3 |      Fixed 
+  2055 |  JC69 |         5 |    278 |              10 |          8 |      Fixed 
+  2056 |  JC69 |        18 |     95 |               7 |          9 |      Fixed 
+  2057 |  JC69 |        19 |    262 |              11 |         12 |      Fixed 
+  2058 |  JC69 |         2 |     69 |               6 |          5 |      Fixed 
+  2059 |  JC69 |        11 |    224 |              83 |          6 |      Fixed 
+  2060 |  JC69 |         2 |    175 |               6 |          6 |      Fixed 
+  2061 |  JC69 |         5 |    146 |               5 |          5 |      Fixed 
+  2062 |  JC69 |         9 |    175 |              18 |         14 |      Fixed 
+  2063 |  JC69 |         2 |     77 |               0 |          1 |      Fixed 
+  2064 |  JC69 |        18 |    196 |              14 |         16 |      Fixed 
+  2065 |  JC69 |         4 |    273 |              16 |         12 |      Fixed 
+  2066 |  JC69 |         3 |     44 |               0 |          1 |      Fixed 
+  2067 |  JC69 |        20 |    146 |               9 |          7 |      Fixed 
+  2068 |  JC69 |         6 |     53 |               1 |          2 |      Fixed 
+  2069 |  JC69 |         5 |    100 |              14 |         10 |      Fixed 
+  2070 |  JC69 |         3 |    227 |               2 |          4 |      Fixed 
+  2071 |  JC69 |         3 |     46 |               2 |          3 |      Fixed 
+  2072 |  JC69 |         9 |    154 |              10 |          6 |      Fixed 
+  2073 |  JC69 |        20 |    138 |              18 |         12 |      Fixed 
+  2074 |  JC69 |         6 |     70 |               1 |          2 |      Fixed 
+  2075 |  JC69 |         7 |    104 |               1 |          2 |      Fixed 
+  2076 |  JC69 |         2 |     55 |               1 |          2 |      Fixed 
+  2077 |  JC69 |         3 |    260 |              44 |          6 |      Fixed 
+  2078 |  JC69 |         3 |     75 |               0 |          1 |      Fixed 
+  2079 |  JC69 |        10 |     94 |               8 |          5 |      Fixed 
+  2080 |  JC69 |         2 |    261 |               0 |          1 |      Fixed 
+  2081 |  JC69 |         5 |     81 |              39 |          9 |      Fixed 
+  2082 |  JC69 |        15 |     94 |               3 |          4 |      Fixed 
+  2083 |  JC69 |         3 |     53 |               0 |          1 |      Fixed 
+  2084 |  JC69 |        20 |    399 |              77 |         18 |      Fixed 
+  2085 |  JC69 |        18 |     71 |               3 |          4 |      Fixed 
+  2086 |  JC69 |        12 |    267 |              31 |         24 |      Fixed 
+  2087 |  JC69 |         5 |    272 |              38 |         14 |      Fixed 
+  2088 |  JC69 |         8 |    109 |               2 |          3 |      Fixed 
+  2089 |  JC69 |         9 |     44 |               6 |          4 |      Fixed 
+  2090 |  JC69 |        13 |    364 |              40 |         16 |      Fixed 
+  2091 |  JC69 |         2 |     95 |              17 |          3 |      Fixed 
+  2092 |  JC69 |         5 |    225 |              22 |         10 |      Fixed 
+  2093 |  JC69 |        17 |     74 |               5 |          4 |      Fixed 
+  2094 |  JC69 |         9 |    152 |              44 |         12 |      Fixed 
+  2095 |  JC69 |         9 |    289 |              25 |         13 |      Fixed 
+  2096 |  JC69 |         6 |    280 |              28 |         11 |      Fixed 
+  2097 |  JC69 |        15 |    156 |               3 |          4 |      Fixed 
+  2098 |  JC69 |        14 |    282 |             109 |         26 |      Fixed 
+  2099 |  JC69 |         7 |    286 |              79 |         17 |      Fixed 
+  2100 |  JC69 |         6 |    277 |              86 |         24 |      Fixed 
+  2101 |  JC69 |        20 |    133 |               3 |          4 |      Fixed 
+  2102 |  JC69 |        19 |    282 |              26 |         11 |      Fixed 
+  2103 |  JC69 |        11 |    108 |               3 |          4 |      Fixed 
+  2104 |  JC69 |        20 |    159 |               8 |          7 |      Fixed 
+  2105 |  JC69 |        19 |    184 |              84 |          9 |      Fixed 
+  2106 |  JC69 |        19 |    270 |              11 |         13 |      Fixed 
+  2107 |  JC69 |        12 |    201 |               2 |          4 |      Fixed 
+  2108 |  JC69 |         4 |    283 |              28 |         11 |      Fixed 
+  2109 |  JC69 |        20 |    183 |               5 |          6 |      Fixed 
+  2110 |  JC69 |        20 |    178 |               5 |          6 |      Fixed 
+  2111 |  JC69 |         2 |    242 |              33 |          9 |      Fixed 
+  2112 |  JC69 |         3 |    270 |              45 |         10 |      Fixed 
+  2113 |  JC69 |         2 |    278 |               5 |          3 |      Fixed 
+  2114 |  JC69 |        20 |    246 |              83 |         11 |      Fixed 
+  2115 |  JC69 |         5 |    118 |              17 |          8 |      Fixed 
+  2116 |  JC69 |         7 |    245 |              13 |         11 |      Fixed 
+  2117 |  JC69 |         2 |     61 |               4 |          2 |      Fixed 
+  2118 |  JC69 |        12 |    126 |              18 |         12 |      Fixed 
+  2119 |  JC69 |         6 |    216 |               7 |          6 |      Fixed 
+  2120 |  JC69 |        15 |     62 |               1 |          2 |      Fixed 
+  2121 |  JC69 |        12 |    212 |              45 |         13 |      Fixed 
+  2122 |  JC69 |        18 |    187 |               6 |          7 |      Fixed 
+  2123 |  JC69 |        14 |    217 |              20 |          9 |      Fixed 
+  2124 |  JC69 |        20 |    197 |              19 |         11 |      Fixed 
+  2125 |  JC69 |        14 |    152 |              18 |          9 |      Fixed 
+  2126 |  JC69 |        19 |    101 |               4 |          5 |      Fixed 
+  2127 |  JC69 |         2 |    281 |              10 |          7 |      Fixed 
+  2128 |  JC69 |        20 |    163 |               3 |          4 |      Fixed 
+  2129 |  JC69 |        20 |    151 |               5 |          6 |      Fixed 
+  2130 |  JC69 |         2 |    281 |               7 |          4 |      Fixed 
+  2131 |  JC69 |        17 |    288 |             110 |          8 |      Fixed 
+  2132 |  JC69 |        20 |    138 |               3 |          4 |      Fixed 
+  2133 |  JC69 |        20 |    228 |               4 |          5 |      Fixed 
+  2134 |  JC69 |         2 |     57 |               1 |          2 |      Fixed 
+  2135 |  JC69 |        20 |     84 |               4 |          5 |      Fixed 
+  2136 |  JC69 |         2 |     92 |               9 |          2 |      Fixed 
+  2137 |  JC69 |        11 |    168 |              53 |         10 |      Fixed 
+  2138 |  JC69 |         4 |    182 |              18 |          8 |      Fixed 
+  2139 |  JC69 |        20 |    137 |               2 |          3 |      Fixed 
+  2140 |  JC69 |        17 |    231 |             144 |          8 |      Fixed 
+  2141 |  JC69 |        13 |     67 |               7 |          4 |      Fixed 
+  2142 |  JC69 |         9 |    256 |             130 |          7 |      Fixed 
+  2143 |  JC69 |        20 |    159 |               3 |          4 |      Fixed 
+  2144 |  JC69 |         2 |    269 |               0 |          1 |      Fixed 
+  2145 |  JC69 |        20 |    590 |             289 |         18 |      Fixed 
+  2146 |  JC69 |        16 |    529 |             375 |         23 |      Fixed 
+  2147 |  JC69 |         2 |    139 |              15 |          3 |      Fixed 
+  2148 |  JC69 |        20 |    351 |             132 |          5 |      Fixed 
+  2149 |  JC69 |        17 |    277 |              19 |         11 |      Fixed 
+  2150 |  JC69 |        17 |    291 |             119 |         17 |      Fixed 
 
 Parsing map file...
 ajan_BABY6724 ajan
@@ -4038,6 +4188,156 @@ diploid_resolve_locus   1997:         2      119        3 ->         3
 diploid_resolve_locus   1998:        20       77        3 ->         3
 diploid_resolve_locus   1999:         2      538        4 ->         4
 diploid_resolve_locus   2000:         2       87        2 ->         2
+diploid_resolve_locus   2001:        19       51        4 ->         5
+diploid_resolve_locus   2002:        17       64        4 ->         4
+diploid_resolve_locus   2003:         2      282        7 ->         9
+diploid_resolve_locus   2004:        20      103        7 ->        24
+diploid_resolve_locus   2005:         2      274        6 ->         7
+diploid_resolve_locus   2006:        19      528       29 ->        39
+diploid_resolve_locus   2007:        20      146        8 ->         9
+diploid_resolve_locus   2008:         2      281        2 ->         2
+diploid_resolve_locus   2009:        20      168        1 ->         1
+diploid_resolve_locus   2010:         2      280        6 ->         8
+diploid_resolve_locus   2011:        20      324        9 ->         9
+diploid_resolve_locus   2012:         4      184        2 ->         2
+diploid_resolve_locus   2013:         9      121       13 ->        17
+diploid_resolve_locus   2014:        14      355        9 ->        10
+diploid_resolve_locus   2015:         3      272        6 ->         7
+diploid_resolve_locus   2016:        18      393       37 ->        67
+diploid_resolve_locus   2017:         7      103        1 ->         1
+diploid_resolve_locus   2018:        20      223       13 ->        13
+diploid_resolve_locus   2019:        18      177       10 ->        12
+diploid_resolve_locus   2020:         7      227       16 ->        28
+diploid_resolve_locus   2021:         2      198        5 ->         6
+diploid_resolve_locus   2022:         4       63        2 ->         2
+diploid_resolve_locus   2023:        17       66        3 ->         3
+diploid_resolve_locus   2024:         2      114        3 ->         4
+diploid_resolve_locus   2025:         6      159        3 ->         5
+diploid_resolve_locus   2026:         2      371        6 ->         8
+diploid_resolve_locus   2027:         4      265       10 ->        12
+diploid_resolve_locus   2028:         6      287       11 ->        13
+diploid_resolve_locus   2029:         5      230        3 ->         3
+diploid_resolve_locus   2030:        20      149       10 ->        25
+diploid_resolve_locus   2031:         5      230        5 ->         6
+diploid_resolve_locus   2032:         5      226       12 ->        33
+diploid_resolve_locus   2033:         4      329       10 ->        13
+diploid_resolve_locus   2034:         9      178        6 ->         6
+diploid_resolve_locus   2035:         2       41        2 ->         2
+diploid_resolve_locus   2036:         2      142        3 ->         3
+diploid_resolve_locus   2037:         3      266        4 ->         4
+diploid_resolve_locus   2038:         9      150        9 ->        15
+diploid_resolve_locus   2039:         6      302        4 ->         5
+diploid_resolve_locus   2040:        20      351       13 ->        18
+diploid_resolve_locus   2041:         7      132       11 ->        23
+diploid_resolve_locus   2042:         2       36        1 ->         1
+diploid_resolve_locus   2043:         4       39        2 ->         2
+diploid_resolve_locus   2044:         5      105        5 ->         5
+diploid_resolve_locus   2045:         3      247        3 ->         3
+diploid_resolve_locus   2046:         8       82        9 ->        12
+diploid_resolve_locus   2047:        19      128        5 ->         6
+diploid_resolve_locus   2048:         9      282       16 ->        20
+diploid_resolve_locus   2049:        12       88        4 ->         4
+diploid_resolve_locus   2050:        20       76        7 ->         8
+diploid_resolve_locus   2051:         5      193        3 ->         3
+diploid_resolve_locus   2052:         2      222        2 ->         2
+diploid_resolve_locus   2053:         2      229        2 ->         2
+diploid_resolve_locus   2054:        19       88        3 ->         3
+diploid_resolve_locus   2055:         5      278        8 ->         9
+diploid_resolve_locus   2056:        18       95        9 ->        14
+diploid_resolve_locus   2057:        19      262       12 ->        16
+diploid_resolve_locus   2058:         2       69        5 ->         6
+diploid_resolve_locus   2059:        11      224        6 ->         6
+diploid_resolve_locus   2060:         2      175        6 ->         8
+diploid_resolve_locus   2061:         5      146        5 ->         5
+diploid_resolve_locus   2062:         9      175       14 ->        27
+diploid_resolve_locus   2063:         2       77        1 ->         1
+diploid_resolve_locus   2064:        18      196       16 ->        65
+diploid_resolve_locus   2065:         4      273       12 ->        15
+diploid_resolve_locus   2066:         3       44        1 ->         1
+diploid_resolve_locus   2067:        20      146        7 ->         9
+diploid_resolve_locus   2068:         6       53        2 ->         2
+diploid_resolve_locus   2069:         5      100       10 ->        13
+diploid_resolve_locus   2070:         3      227        4 ->         4
+diploid_resolve_locus   2071:         3       46        3 ->         3
+diploid_resolve_locus   2072:         9      154        6 ->         6
+diploid_resolve_locus   2073:        20      138       12 ->        39
+diploid_resolve_locus   2074:         6       70        2 ->         2
+diploid_resolve_locus   2075:         7      104        2 ->         2
+diploid_resolve_locus   2076:         2       55        2 ->         2
+diploid_resolve_locus   2077:         3      260        6 ->         6
+diploid_resolve_locus   2078:         3       75        1 ->         1
+diploid_resolve_locus   2079:        10       94        5 ->         6
+diploid_resolve_locus   2080:         2      261        1 ->         1
+diploid_resolve_locus   2081:         5       81        9 ->        13
+diploid_resolve_locus   2082:        15       94        4 ->         4
+diploid_resolve_locus   2083:         3       53        1 ->         1
+diploid_resolve_locus   2084:        20      399       18 ->        28
+diploid_resolve_locus   2085:        18       71        4 ->         4
+diploid_resolve_locus   2086:        12      267       24 ->        35
+diploid_resolve_locus   2087:         5      272       14 ->        18
+diploid_resolve_locus   2088:         8      109        3 ->         3
+diploid_resolve_locus   2089:         9       44        4 ->         4
+diploid_resolve_locus   2090:        13      364       16 ->        32
+diploid_resolve_locus   2091:         2       95        3 ->         3
+diploid_resolve_locus   2092:         5      225       10 ->        10
+diploid_resolve_locus   2093:        17       74        4 ->         4
+diploid_resolve_locus   2094:         9      152       12 ->        14
+diploid_resolve_locus   2095:         9      289       13 ->        17
+diploid_resolve_locus   2096:         6      280       11 ->        14
+diploid_resolve_locus   2097:        15      156        4 ->         5
+diploid_resolve_locus   2098:        14      282       26 ->       361
+diploid_resolve_locus   2099:         7      286       17 ->        19
+diploid_resolve_locus   2100:         6      277       24 ->        36
+diploid_resolve_locus   2101:        20      133        4 ->         4
+diploid_resolve_locus   2102:        19      282       11 ->        17
+diploid_resolve_locus   2103:        11      108        4 ->         4
+diploid_resolve_locus   2104:        20      159        7 ->        13
+diploid_resolve_locus   2105:        19      184        9 ->         9
+diploid_resolve_locus   2106:        19      270       13 ->        33
+diploid_resolve_locus   2107:        12      201        4 ->         4
+diploid_resolve_locus   2108:         4      283       11 ->        13
+diploid_resolve_locus   2109:        20      183        6 ->         9
+diploid_resolve_locus   2110:        20      178        6 ->         7
+diploid_resolve_locus   2111:         2      242        9 ->        13
+diploid_resolve_locus   2112:         3      270       10 ->        15
+diploid_resolve_locus   2113:         2      278        3 ->         3
+diploid_resolve_locus   2114:        20      246       11 ->        21
+diploid_resolve_locus   2115:         5      118        8 ->        10
+diploid_resolve_locus   2116:         7      245       11 ->        12
+diploid_resolve_locus   2117:         2       61        2 ->         2
+diploid_resolve_locus   2118:        12      126       12 ->        15
+diploid_resolve_locus   2119:         6      216        6 ->         7
+diploid_resolve_locus   2120:        15       62        2 ->         2
+diploid_resolve_locus   2121:        12      212       13 ->        13
+diploid_resolve_locus   2122:        18      187        7 ->        11
+diploid_resolve_locus   2123:        14      217        9 ->        11
+diploid_resolve_locus   2124:        20      197       11 ->       223
+diploid_resolve_locus   2125:        14      152        9 ->        13
+diploid_resolve_locus   2126:        19      101        5 ->         6
+diploid_resolve_locus   2127:         2      281        7 ->         9
+diploid_resolve_locus   2128:        20      163        4 ->         4
+diploid_resolve_locus   2129:        20      151        6 ->         7
+diploid_resolve_locus   2130:         2      281        4 ->         4
+diploid_resolve_locus   2131:        17      288        8 ->         8
+diploid_resolve_locus   2132:        20      138        4 ->         4
+diploid_resolve_locus   2133:        20      228        5 ->         6
+diploid_resolve_locus   2134:         2       57        2 ->         2
+diploid_resolve_locus   2135:        20       84        5 ->         6
+diploid_resolve_locus   2136:         2       92        2 ->         2
+diploid_resolve_locus   2137:        11      168       10 ->        10
+diploid_resolve_locus   2138:         4      182        8 ->         8
+diploid_resolve_locus   2139:        20      137        3 ->         3
+diploid_resolve_locus   2140:        17      231        8 ->         8
+diploid_resolve_locus   2141:        13       67        4 ->         4
+diploid_resolve_locus   2142:         9      256        7 ->         7
+diploid_resolve_locus   2143:        20      159        4 ->         4
+diploid_resolve_locus   2144:         2      269        1 ->         1
+diploid_resolve_locus   2145:        20      590       18 ->        18
+diploid_resolve_locus   2146:        16      529       23 ->       160
+diploid_resolve_locus   2147:         2      139        3 ->         3
+diploid_resolve_locus   2148:        20      351        5 ->         5
+diploid_resolve_locus   2149:        17      277       11 ->        14
+diploid_resolve_locus   2150:        17      291       17 ->        27
 ajan_BABY6724 -> ajan (diploid=1)
 ajan_DW655 -> ajan (diploid=1)
 ajan_DW663 -> ajan (diploid=1)
@@ -6104,6 +6404,156 @@ Summary of alignments *after* phasing sequences:
   1998 |  JC69 |        40 |     77 |               2 |          3 |      Fixed 
   1999 |  JC69 |         4 |    538 |             261 |          4 |      Fixed 
   2000 |  JC69 |         4 |     87 |               4 |          2 |      Fixed 
+  2001 |  JC69 |        38 |     51 |               3 |          5 |      Fixed 
+  2002 |  JC69 |        34 |     64 |               3 |          4 |      Fixed 
+  2003 |  JC69 |         4 |    282 |               9 |          6 |      Fixed 
+  2004 |  JC69 |        40 |    103 |               6 |         24 |      Fixed 
+  2005 |  JC69 |         4 |    274 |             136 |          6 |      Fixed 
+  2006 |  JC69 |        38 |    528 |             269 |         36 |      Fixed 
+  2007 |  JC69 |        40 |    146 |               7 |          8 |      Fixed 
+  2008 |  JC69 |         4 |    281 |               6 |          2 |      Fixed 
+  2009 |  JC69 |        40 |    168 |               0 |          1 |      Fixed 
+  2010 |  JC69 |         4 |    280 |               7 |          5 |      Fixed 
+  2011 |  JC69 |        40 |    324 |             149 |          9 |      Fixed 
+  2012 |  JC69 |         8 |    184 |               1 |          2 |      Fixed 
+  2013 |  JC69 |        18 |    121 |              62 |         16 |      Fixed 
+  2014 |  JC69 |        28 |    355 |              18 |          9 |      Fixed 
+  2015 |  JC69 |         6 |    272 |               4 |          6 |      Fixed 
+  2016 |  JC69 |        36 |    393 |             149 |         57 |      Fixed 
+  2017 |  JC69 |        14 |    103 |               0 |          1 |      Fixed 
+  2018 |  JC69 |        40 |    223 |              87 |         13 |      Fixed 
+  2019 |  JC69 |        36 |    177 |              10 |         12 |      Fixed 
+  2020 |  JC69 |        14 |    227 |              25 |         17 |      Fixed 
+  2021 |  JC69 |         4 |    198 |              11 |          5 |      Fixed 
+  2022 |  JC69 |         8 |     63 |               0 |          2 |      Fixed 
+  2023 |  JC69 |        34 |     66 |               2 |          3 |      Fixed 
+  2024 |  JC69 |         4 |    114 |               2 |          3 |      Fixed 
+  2025 |  JC69 |        12 |    159 |               2 |          5 |      Fixed 
+  2026 |  JC69 |         4 |    371 |              64 |          6 |      Fixed 
+  2027 |  JC69 |         8 |    265 |              11 |         10 |      Fixed 
+  2028 |  JC69 |        12 |    287 |              28 |         12 |      Fixed 
+  2029 |  JC69 |        10 |    230 |               6 |          3 |      Fixed 
+  2030 |  JC69 |        40 |    149 |               9 |         24 |      Fixed 
+  2031 |  JC69 |        10 |    230 |              11 |          5 |      Fixed 
+  2032 |  JC69 |        10 |    226 |              20 |         14 |      Fixed 
+  2033 |  JC69 |         8 |    329 |             153 |         11 |      Fixed 
+  2034 |  JC69 |        18 |    178 |              87 |          6 |      Fixed 
+  2035 |  JC69 |         4 |     41 |               1 |          2 |      Fixed 
+  2036 |  JC69 |         4 |    142 |               5 |          3 |      Fixed 
+  2037 |  JC69 |         6 |    266 |              77 |          4 |      Fixed 
+  2038 |  JC69 |        18 |    150 |               8 |          9 |      Fixed 
+  2039 |  JC69 |        12 |    302 |               3 |          5 |      Fixed 
+  2040 |  JC69 |        40 |    351 |              21 |         16 |      Fixed 
+  2041 |  JC69 |        14 |    132 |              28 |         23 |      Fixed 
+  2042 |  JC69 |         4 |     36 |               0 |          1 |      Fixed 
+  2043 |  JC69 |         8 |     39 |               1 |          2 |      Fixed 
+  2044 |  JC69 |        10 |    105 |              12 |          5 |      Fixed 
+  2045 |  JC69 |         6 |    247 |               2 |          3 |      Fixed 
+  2046 |  JC69 |        16 |     82 |               7 |         10 |      Fixed 
+  2047 |  JC69 |        38 |    128 |               4 |          5 |      Fixed 
+  2048 |  JC69 |        18 |    282 |             144 |         20 |      Fixed 
+  2049 |  JC69 |        24 |     88 |               3 |          4 |      Fixed 
+  2050 |  JC69 |        40 |     76 |               6 |          7 |      Fixed 
+  2051 |  JC69 |        10 |    193 |               1 |          3 |      Fixed 
+  2052 |  JC69 |         4 |    222 |               1 |          2 |      Fixed 
+  2053 |  JC69 |         4 |    229 |               1 |          2 |      Fixed 
+  2054 |  JC69 |        38 |     88 |               2 |          3 |      Fixed 
+  2055 |  JC69 |        10 |    278 |              10 |          8 |      Fixed 
+  2056 |  JC69 |        36 |     95 |               7 |         14 |      Fixed 
+  2057 |  JC69 |        38 |    262 |              11 |          9 |      Fixed 
+  2058 |  JC69 |         4 |     69 |               6 |          5 |      Fixed 
+  2059 |  JC69 |        22 |    224 |              83 |          6 |      Fixed 
+  2060 |  JC69 |         4 |    175 |               6 |          5 |      Fixed 
+  2061 |  JC69 |        10 |    146 |               5 |          5 |      Fixed 
+  2062 |  JC69 |        18 |    175 |              18 |         21 |      Fixed 
+  2063 |  JC69 |         4 |     77 |               0 |          1 |      Fixed 
+  2064 |  JC69 |        36 |    196 |              14 |         61 |      Fixed 
+  2065 |  JC69 |         8 |    273 |              16 |         14 |      Fixed 
+  2066 |  JC69 |         6 |     44 |               0 |          1 |      Fixed 
+  2067 |  JC69 |        40 |    146 |               9 |          9 |      Fixed 
+  2068 |  JC69 |        12 |     53 |               1 |          2 |      Fixed 
+  2069 |  JC69 |        10 |    100 |              14 |         11 |      Fixed 
+  2070 |  JC69 |         6 |    227 |               2 |          4 |      Fixed 
+  2071 |  JC69 |         6 |     46 |               2 |          3 |      Fixed 
+  2072 |  JC69 |        18 |    154 |              10 |          6 |      Fixed 
+  2073 |  JC69 |        40 |    138 |              18 |         37 |      Fixed 
+  2074 |  JC69 |        12 |     70 |               1 |          2 |      Fixed 
+  2075 |  JC69 |        14 |    104 |               1 |          2 |      Fixed 
+  2076 |  JC69 |         4 |     55 |               1 |          2 |      Fixed 
+  2077 |  JC69 |         6 |    260 |              44 |          6 |      Fixed 
+  2078 |  JC69 |         6 |     75 |               0 |          1 |      Fixed 
+  2079 |  JC69 |        20 |     94 |               8 |          6 |      Fixed 
+  2080 |  JC69 |         4 |    261 |               0 |          1 |      Fixed 
+  2081 |  JC69 |        10 |     81 |              39 |         10 |      Fixed 
+  2082 |  JC69 |        30 |     94 |               3 |          4 |      Fixed 
+  2083 |  JC69 |         6 |     53 |               0 |          1 |      Fixed 
+  2084 |  JC69 |        40 |    399 |              77 |         28 |      Fixed 
+  2085 |  JC69 |        36 |     71 |               3 |          4 |      Fixed 
+  2086 |  JC69 |        24 |    267 |              31 |         31 |      Fixed 
+  2087 |  JC69 |        10 |    272 |              38 |         16 |      Fixed 
+  2088 |  JC69 |        16 |    109 |               2 |          3 |      Fixed 
+  2089 |  JC69 |        18 |     44 |               6 |          4 |      Fixed 
+  2090 |  JC69 |        26 |    364 |              40 |         32 |      Fixed 
+  2091 |  JC69 |         4 |     95 |              17 |          3 |      Fixed 
+  2092 |  JC69 |        10 |    225 |              22 |         10 |      Fixed 
+  2093 |  JC69 |        34 |     74 |               5 |          4 |      Fixed 
+  2094 |  JC69 |        18 |    152 |              44 |         11 |      Fixed 
+  2095 |  JC69 |        18 |    289 |              25 |         12 |      Fixed 
+  2096 |  JC69 |        12 |    280 |              28 |         13 |      Fixed 
+  2097 |  JC69 |        30 |    156 |               3 |          5 |      Fixed 
+  2098 |  JC69 |        28 |    282 |             109 |        342 |      Fixed 
+  2099 |  JC69 |        14 |    286 |              79 |         18 |      Fixed 
+  2100 |  JC69 |        12 |    277 |              86 |         36 |      Fixed 
+  2101 |  JC69 |        40 |    133 |               3 |          4 |      Fixed 
+  2102 |  JC69 |        38 |    282 |              26 |         17 |      Fixed 
+  2103 |  JC69 |        22 |    108 |               3 |          4 |      Fixed 
+  2104 |  JC69 |        40 |    159 |               8 |         12 |      Fixed 
+  2105 |  JC69 |        38 |    184 |              84 |          9 |      Fixed 
+  2106 |  JC69 |        38 |    270 |              11 |         31 |      Fixed 
+  2107 |  JC69 |        24 |    201 |               2 |          4 |      Fixed 
+  2108 |  JC69 |         8 |    283 |              28 |         12 |      Fixed 
+  2109 |  JC69 |        40 |    183 |               5 |          9 |      Fixed 
+  2110 |  JC69 |        40 |    178 |               5 |          7 |      Fixed 
+  2111 |  JC69 |         4 |    242 |              33 |          6 |      Fixed 
+  2112 |  JC69 |         6 |    270 |              45 |         10 |      Fixed 
+  2113 |  JC69 |         4 |    278 |               5 |          3 |      Fixed 
+  2114 |  JC69 |        40 |    246 |              83 |         19 |      Fixed 
+  2115 |  JC69 |        10 |    118 |              17 |         10 |      Fixed 
+  2116 |  JC69 |        14 |    245 |              13 |         11 |      Fixed 
+  2117 |  JC69 |         4 |     61 |               4 |          2 |      Fixed 
+  2118 |  JC69 |        24 |    126 |              18 |         14 |      Fixed 
+  2119 |  JC69 |        12 |    216 |               7 |          6 |      Fixed 
+  2120 |  JC69 |        30 |     62 |               1 |          2 |      Fixed 
+  2121 |  JC69 |        24 |    212 |              45 |         13 |      Fixed 
+  2122 |  JC69 |        36 |    187 |               6 |         10 |      Fixed 
+  2123 |  JC69 |        28 |    217 |              20 |          9 |      Fixed 
+  2124 |  JC69 |        40 |    197 |              19 |        203 |      Fixed 
+  2125 |  JC69 |        28 |    152 |              18 |         13 |      Fixed 
+  2126 |  JC69 |        38 |    101 |               4 |          6 |      Fixed 
+  2127 |  JC69 |         4 |    281 |              10 |          6 |      Fixed 
+  2128 |  JC69 |        40 |    163 |               3 |          4 |      Fixed 
+  2129 |  JC69 |        40 |    151 |               5 |          6 |      Fixed 
+  2130 |  JC69 |         4 |    281 |               7 |          4 |      Fixed 
+  2131 |  JC69 |        34 |    288 |             110 |          8 |      Fixed 
+  2132 |  JC69 |        40 |    138 |               3 |          4 |      Fixed 
+  2133 |  JC69 |        40 |    228 |               4 |          6 |      Fixed 
+  2134 |  JC69 |         4 |     57 |               1 |          2 |      Fixed 
+  2135 |  JC69 |        40 |     84 |               4 |          6 |      Fixed 
+  2136 |  JC69 |         4 |     92 |               9 |          2 |      Fixed 
+  2137 |  JC69 |        22 |    168 |              53 |         10 |      Fixed 
+  2138 |  JC69 |         8 |    182 |              18 |          8 |      Fixed 
+  2139 |  JC69 |        40 |    137 |               2 |          3 |      Fixed 
+  2140 |  JC69 |        34 |    231 |             144 |          8 |      Fixed 
+  2141 |  JC69 |        26 |     67 |               7 |          4 |      Fixed 
+  2142 |  JC69 |        18 |    256 |             130 |          7 |      Fixed 
+  2143 |  JC69 |        40 |    159 |               3 |          4 |      Fixed 
+  2144 |  JC69 |         4 |    269 |               0 |          1 |      Fixed 
+  2145 |  JC69 |        40 |    590 |             289 |         18 |      Fixed 
+  2146 |  JC69 |        32 |    529 |             375 |        100 |      Fixed 
+  2147 |  JC69 |         4 |    139 |              15 |          3 |      Fixed 
+  2148 |  JC69 |        40 |    351 |             132 |          5 |      Fixed 
+  2149 |  JC69 |        34 |    277 |              19 |         14 |      Fixed 
+  2150 |  JC69 |        34 |    291 |             119 |         26 |      Fixed 
 
 
 Per-locus sequences in data and 'species&tree' tag:
@@ -6122,7 +6572,7 @@ Map of populations and ancestors (1 in map indicates ancestor):
 Generating gene trees.... Done
 
 Initial MSC density and log-likelihood of observing data:
-log-PG0 = 221075.363264   log-L0 = -782336.860894
+log-PG0 = 235696.194423   log-L0 = -836171.738941
 
 
 bitmatrix for MSC-M
@@ -6164,40 +6614,94 @@ Prgs | Gage Gspr  th1  th2  thg  tau  mix wr1  wrg  | theta1 theta2 theta3    ta
 
 
                       Gage    Gspr     th1     th2     tau     mix     wr1  
-Current Pjump:      0.70431 0.66429 0.02075 0.00000 0.00440 0.02160 0.03661
+Current Pjump:      0.70367 0.65967 0.04097 0.00420 0.00360 0.01960 0.03419
 Current finetune:   5.00000 0.00100 0.00050 0.00200 0.00100 0.30000 0.10000
-New finetune:      19.58608 0.00337 0.00003 0.00002 0.00001 0.01998 0.01130
+New finetune:      19.53699 0.00331 0.00006 0.00003 0.00001 0.01813 0.01055
 
-=> 'finetune = 1 Gage:19.586081 Gspr:0.003370 th1:0.000032 th2:0.000020 tau:0.000014 mix:0.019985 wr1:0.011300'
+=> 'finetune = 1 Gage:19.536992 Gspr:0.003315 th1:0.000063 th2:0.000026 tau:0.000011 mix:0.018133 wr1:0.010550'
 
-  -0%  0.71 0.67 0.86 0.66 1.00 0.27 0.47 0.72 1.00   0.0069 0.0088 0.0029  0.0005  301.1613 887.7123   247367.94504  -684444.28703
-
-                      Gage    Gspr     th1     th2     tau     mix     wr1  
-Current Pjump:      0.71041 0.66572 0.86164 0.66116 0.26640 0.46840 0.71957
-Current finetune:  19.58608 0.00337 0.00003 0.00002 0.00001 0.01998 0.01130
-New finetune:      78.59226 0.01142 0.00028 0.00007 0.00001 0.03551 0.04705
-
-=> 'finetune = 1 Gage:78.592263 Gspr:0.011417 th1:0.000284 th2:0.000067 tau:0.000012 mix:0.035509 wr1:0.047045'
-
-
+  -0%  0.71 0.66 0.71 0.59 1.00 0.33 0.48 0.73 1.00   0.0075 0.0086 0.0031  0.0005  448.6922 760.9673   268045.40437  -730057.09516
 
                       Gage    Gspr     th1     th2     tau     mix     wr1  
-Current Pjump:      0.71052 0.66611 0.19013 0.22951 0.31680 0.21680 0.29113
-Current finetune:  78.59226 0.01142 0.00028 0.00007 0.00001 0.03551 0.04705
-New finetune:      99.00000 0.03873 0.00017 0.00005 0.00001 0.02470 0.04544
+Current Pjump:      0.71026 0.66170 0.71109 0.59426 0.32640 0.47800 0.72688
+Current finetune:  19.53699 0.00331 0.00006 0.00003 0.00001 0.01813 0.01055
+New finetune:      78.34862 0.01107 0.00025 0.00007 0.00001 0.03321 0.04526
 
-=> 'finetune = 1 Gage:99.000000 Gspr:0.038732 th1:0.000172 th2:0.000049 tau:0.000013 mix:0.024695 wr1:0.045436'
+=> 'finetune = 1 Gage:78.348617 Gspr:0.011067 th1:0.000254 th2:0.000069 tau:0.000012 mix:0.033210 wr1:0.045265'
 
-   0%  0.71 0.67 0.34 0.33 1.00 0.28 0.38 0.29 1.00   0.0067 0.0093 0.0030  0.0005  186.8788 971.6910   263764.71657  -684448.18501  54:02
 
 
                       Gage    Gspr     th1     th2     tau     mix     wr1  
-Current Pjump:      0.71024 0.66582 0.33921 0.33466 0.27840 0.37640 0.29158
-Current finetune:  99.00000 0.03873 0.00017 0.00005 0.00001 0.02470 0.04544
-New finetune:      99.00000 0.13126 0.00020 0.00006 0.00001 0.03254 0.04396
+Current Pjump:      0.71077 0.66165 0.21535 0.20238 0.28600 0.24640 0.23623
+Current finetune:  78.34862 0.01107 0.00025 0.00007 0.00001 0.03321 0.04526
+New finetune:      99.00000 0.03695 0.00018 0.00004 0.00001 0.02657 0.03457
 
-=> 'finetune = 1 Gage:99.000000 Gspr:0.131260 th1:0.000199 th2:0.000056 tau:0.000012 mix:0.032539 wr1:0.043960'
+=> 'finetune = 1 Gage:99.000000 Gspr:0.036946 th1:0.000176 th2:0.000044 tau:0.000012 mix:0.026567 wr1:0.034566'
 
-   1%  0.71 0.67 0.31 0.30 1.00 0.33 0.26 0.27 1.00   0.0078 0.0088 0.0030  0.0005  407.3107 584.7736   253150.72051  -684435.01557   1%  0.71 0.67 0.33 0.28 1.00 0.33 0.27 0.27 1.00   0.0077 0.0090 0.0030  0.0005  342.8501 622.2820   252385.30307  -684430.56715   2%  0.71 0.67 0.32 0.27 1.00 0.33 0.26 0.28 1.00   0.0075 0.0091 0.0030  0.0005  304.1771 680.1092   247534.43635  -684415.22886   2%  0.71 0.67 0.32 0.26 1.00 0.33 0.26 0.28 1.00   0.0075 0.0091 0.0030  0.0005  296.9011 687.0864   248561.01324  -684397.47669   3%  0.71 0.67 0.31 0.26 1.00 0.33 0.26 0.28 1.00   0.0075 0.0090 0.0030  0.0005  303.5583 701.8292   263790.02754  -684384.51518   3%  0.71 0.67 0.31 0.26 1.00 0.32 0.26 0.28 1.00   0.0075 0.0089 0.0030  0.0005  329.8147 691.7691   259366.94111  -684373.15500   4%  0.71 0.67 0.31 0.27 1.00 0.32 0.26 0.27 1.00   0.0075 0.0089 0.0030  0.0005  339.0663 686.4170   257071.60259  -684366.98582   4%  0.71 0.67 0.31 0.26 1.00 0.32 0.26 0.27 1.00   0.0075 0.0088 0.0030  0.0005  340.0262 681.8716   246416.07253  -684363.41455   5%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  343.6035 667.2508   253931.94292  -684358.68465   5%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  350.1403 651.0927   258810.43517  -684354.13080  7:07:14
-   6%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  351.3015 656.2749   261776.92115  -684348.05082   6%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  347.6139 663.3555   261553.59934  -684343.98138   7%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  351.5838 664.7741   250059.35719  -684340.48207   7%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  355.8279 657.1138   255875.95194  -684337.58531   8%  0.71 0.67 0.31 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  357.7070 654.1528   248881.30003  -684335.36291   8%  0.71 0.67 0.30 0.26 1.00 0.32 0.27 0.27 1.00   0.0076 0.0088 0.0030  0.0005  349.1379 668.9279   256564.89699  -684332.83266   9%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  343.2065 676.5903   250682.29336  -684330.04486   9%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  346.0750 668.7045   257543.19993  -684327.97995  10%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  346.7198 667.1499   259546.97572  -684326.16023  10%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  340.4403 677.1089   261189.58091  -684324.51100  11:10:40
-  11%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  341.6374 675.9837   247861.58044  -684322.84944  11%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  346.9927 667.3848   265831.12190  -684321.58285  12%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  343.2097 673.0031   250249.52803  -684320.40820  12%  0.71 0.67 0.31 0.25 1.00 0.32 0.27 0.28 1.00   0.0076 0.0088 0.0030  0.0005  339.1878 674.8777   254717.56689  -684319.32177
+   0%  0.71 0.66 0.34 0.38 1.00 0.30 0.32 0.32 1.00   0.0076 0.0088 0.0031  0.0005  447.2583 706.4676   280026.01886  -730019.51476  2:25:14
+
+
+                      Gage    Gspr     th1     th2     tau     mix     wr1  
+Current Pjump:      0.71062 0.66191 0.33753 0.38115 0.30440 0.31760 0.32227
+Current finetune:  99.00000 0.03695 0.00018 0.00004 0.00001 0.02657 0.03457
+New finetune:      99.00000 0.12345 0.00020 0.00006 0.00001 0.02841 0.03761
+
+=> 'finetune = 1 Gage:99.000000 Gspr:0.123452 th1:0.000202 th2:0.000059 tau:0.000012 mix:0.028409 wr1:0.037610'
+
+   1%  0.71 0.66 0.29 0.22 1.00 0.29 0.30 0.32 1.00   0.0081 0.0088 0.0031  0.0005  515.8323 504.6844   273544.64853  -730017.83674   1%  0.71 0.66 0.30 0.22 1.00 0.29 0.31 0.31 1.00   0.0082 0.0086 0.0031  0.0005  559.9261 496.6875   275598.13092  -730017.58623   2%  0.71 0.66 0.30 0.21 1.00 0.29 0.30 0.31 1.00   0.0081 0.0088 0.0031  0.0005  500.2082 537.6500   276066.56529  -730014.15833   2%  0.71 0.66 0.30 0.21 1.00 0.29 0.30 0.31 1.00   0.0079 0.0089 0.0031  0.0005  450.0819 593.5808   269098.23315  -730007.69718   3%  0.71 0.66 0.30 0.22 1.00 0.29 0.30 0.32 1.00   0.0079 0.0090 0.0031  0.0005  411.9571 627.1942   271948.74110  -730005.90795   3%  0.71 0.66 0.30 0.23 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  379.2977 670.6743   260049.47613  -730001.81637   4%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.33 1.00   0.0078 0.0092 0.0031  0.0005  357.3977 681.3203   283698.98467  -729998.86960   4%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  365.5632 691.5804   295937.39388  -729993.45352   5%  0.71 0.66 0.31 0.23 1.00 0.30 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  363.2710 697.3442   282337.50578  -729990.26882   5%  0.71 0.66 0.31 0.23 1.00 0.30 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  357.8247 707.7134   281693.08198  -729985.82965  13:26:08
+   6%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  363.6711 702.4750   276779.48455  -729983.16937   6%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  377.3612 690.5618   281611.04529  -729980.68978   7%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  382.0143 683.2527   273001.20116  -729978.27959   7%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  377.9618 687.3576   269794.70221  -729975.36699   8%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  373.5725 686.7281   274767.50352  -729973.69744   8%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0078 0.0091 0.0031  0.0005  377.0027 680.4686   277765.04966  -729971.98592   9%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.31 1.00   0.0077 0.0091 0.0031  0.0005  370.9291 686.7508   272829.41095  -729970.32383   9%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  357.9099 698.7799   252363.63493  -729968.91139  10%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  357.5551 695.4540   285808.35424  -729967.59897  10%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  360.2586 694.8526   277507.98493  -729965.27203  24:22:27
+  11%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  351.9364 708.2711   280639.32066  -729963.47841  11%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  349.2036 710.8795   276476.06808  -729962.40180  12%  0.71 0.66 0.31 0.23 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  347.2496 713.2180   268521.89600  -729961.04673  12%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.8177 715.6243   278379.10775  -729959.91929  13%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  346.1673 714.7339   263238.61309  -729958.45754  13%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.5003 716.3999   276974.81497  -729957.58442  14%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.0380 722.0929   269234.94324  -729956.74157  14%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  336.9949 729.1041   266046.68550  -729955.65422  15%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  336.6901 726.7193   283357.73917  -729954.87027  15%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.9390 722.8377   279234.10537  -729954.60044  35:11:18
+  16%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.2587 719.3396   268417.72942  -729953.65278  16%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.2579 718.5835   281296.77660  -729952.99062  17%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.6359 723.6375   277817.00951  -729952.09865  17%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.9099 729.3104   282390.92066  -729951.45430  18%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  334.9582 733.5897   279861.09608  -729951.26236  18%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0076 0.0092 0.0031  0.0005  333.8877 736.5455   272051.15092  -729950.77534  19%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  336.1857 731.9267   262457.37846  -729950.50541  19%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.3295 730.0115   266825.38425  -729950.28509  20%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  339.2638 725.0187   268074.97197  -729950.10089  20%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.0017 723.3120   274013.62255  -729949.71647  46:01:04
+  21%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.7920 721.4241   274468.29556  -729949.25866  21%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.0202 723.3757   270667.28207  -729948.73679  22%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.2879 725.2993   279139.62139  -729948.51895  22%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.1695 725.8949   286209.72959  -729948.27779  23%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.4664 724.1660   272149.62751  -729948.14485  23%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.8309 722.9222   282460.44666  -729947.80735  24%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  342.1856 719.4150   266881.61746  -729947.34671  24%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  342.6483 715.1088   262031.09435  -729946.97024  25%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.5827 718.3065   288550.18824  -729946.48442  25%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  342.6097 717.3481   274282.37475  -729945.87066  56:53:20
+  26%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.8301 716.2558   266012.58357  -729945.72997  26%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.1779 716.3189   272986.37695  -729945.21412  27%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.6249 716.3269   282641.14526  -729944.82046  27%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.0281 716.2096   270948.35685  -729944.33364  28%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.4047 715.8773   269436.05357  -729944.14933  28%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  339.9388 716.8866   281585.98805  -729943.87762  29%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.7902 718.1470   268633.50600  -729943.77588  29%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  337.5339 719.5183   276012.21764  -729943.44645  30%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  335.9860 720.4256   272673.62498  -729943.23172  30%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  335.8781 721.2894   270503.81814  -729943.10343  67:43:49
+  31%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  337.9364 717.8001   278288.48626  -729942.97024  31%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.4542 716.2937   270300.35044  -729942.53345  32%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.9771 715.6036   272219.46161  -729942.37941  32%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.7170 714.5794   265839.49861  -729942.17180  33%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  343.2024 712.9763   270313.18652  -729941.89539  33%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  343.0095 712.3589   267997.68374  -729941.72410  34%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.8968 714.8059   279850.45304  -729941.39676  34%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  342.1850 714.3832   276882.63226  -729941.14891  35%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  342.8729 713.9044   265570.09608  -729940.89403  35%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.1683 716.8225   271192.69888  -729940.73122  78:39:12
+  36%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  339.8698 718.6741   276046.00367  -729940.55128  36%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  337.8603 722.1345   266679.19623  -729940.26860  37%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.0098 721.3035   276889.06801  -729940.11462  37%  0.71 0.66 0.30 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  338.6869 719.3038   270485.31089  -729939.93621  38%  0.71 0.66 0.30 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  339.3069 717.9406   275104.24789  -729939.65440  38%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  339.8251 717.5580   271456.80039  -729939.30032  39%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  340.7547 717.0065   285837.51995  -729939.11479  39%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  341.3026 715.9298   270968.77011  -729938.78184  40%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  343.1372 715.4254   291320.04383  -729938.45035  40%  0.71 0.66 0.30 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.1423 715.5398   280300.18579  -729938.13468  89:35:07
+  41%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.0699 716.0629   286625.38617  -729937.96401  41%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  345.1107 714.1588   269554.23967  -729937.77773  42%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.1771 714.3524   278049.51897  -729937.56565  42%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  343.9096 715.4112   283837.76667  -729937.24174  43%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  345.3521 714.4333   273780.51971  -729937.12151  43%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  343.6416 715.5227   270740.86786  -729937.09242  44%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.0073 715.2584   282433.03310  -729936.98670  44%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0092 0.0031  0.0005  344.5411 714.5397   267307.10197  -729936.91696  45%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  345.5925 714.1268   268379.23320  -729936.60176  45%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  346.3487 713.5857   284490.52566  -729936.41061  100:31:49
+  46%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  348.3603 712.2202   278107.57856  -729936.18565  46%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  347.7720 713.8408   281338.53122  -729935.91119  47%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  347.2985 714.7285   271957.89528  -729935.88975  47%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  347.6948 713.8597   263429.00983  -729935.86338  48%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  347.9662 712.9533   277119.31943  -729935.77849  48%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  348.9791 711.6159   280982.11516  -729935.57981  49%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  349.8487 711.3861   267762.31661  -729935.37872  49%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.3184 709.8827   279720.21597  -729935.20631  50%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.9645 708.7644   271832.29879  -729935.12613  50%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.7222 709.4778   279419.46267  -729935.07146  111:22:13
+  51%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  352.0310 708.9841   269058.32162  -729934.91749  51%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  352.3904 708.8974   277301.91184  -729934.68624  52%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  352.6401 708.1539   278054.38772  -729934.60821  52%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  352.0446 707.3749   273479.32237  -729934.53842  53%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.2194 708.3139   270366.82236  -729934.26919  53%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.6992 707.8440   277265.77633  -729934.08352  54%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.3925 708.0001   277085.70350  -729933.96513  54%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.5701 707.4583   279500.52040  -729933.85675  55%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.4201 707.0096   282688.17901  -729933.70901  55%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  351.9705 707.0161   277510.56962  -729933.50630  121:59:36
+  56%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  353.2466 705.5091   284416.40644  -729933.47364  56%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  354.3254 704.5534   274686.51634  -729933.41267  57%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  354.7432 703.6685   263244.87759  -729933.36790  57%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  353.6564 703.8593   266116.36327  -729933.36198  58%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0077 0.0091 0.0031  0.0005  352.9983 704.0969   272105.64020  -729933.26061  58%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.5326 702.5148   281120.96000  -729933.11655  59%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.2574 701.1458   276184.02091  -729933.08192  59%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.2460 700.7785   263673.99301  -729933.08446  60%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.4399 700.4269   269509.58987  -729933.06139  60%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.5265 700.4140   272809.05430  -729932.96688  132:12:10
+  61%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.3205 701.9738   284932.03824  -729932.68921  61%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.8191 701.9547   271382.18241  -729932.60633  62%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.0208 702.1287   273011.77750  -729932.56420  62%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.2421 701.2562   286762.92398  -729932.45605  63%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  358.2905 699.3765   274632.19885  -729932.38063  63%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  358.7226 698.3544   269116.84407  -729932.33847  64%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.3942 699.7602   271896.43333  -729932.29622  64%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.6166 699.6269   265497.23503  -729932.13444  65%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.1540 699.7913   274147.02007  -729932.03773  65%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.7819 699.7568   272073.50851  -729932.04245  142:43:14
+  66%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.4447 700.6136   270830.17216  -729931.94669  66%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.0763 700.0838   291971.14364  -729931.85775  67%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.9624 700.3713   261660.93447  -729931.86204  67%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.8467 699.8841   266580.58797  -729931.92877  68%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.8329 699.8937   270053.00262  -729931.91434  68%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.3760 699.9479   293030.86404  -729931.76204  69%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.2736 699.6134   268746.18166  -729931.84363  69%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.5385 699.6594   262583.48312  -729931.88333  70%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.9007 700.0377   278947.19750  -729931.89421  70%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.8440 700.8816   290193.44393  -729931.78144  152:48:12
+  71%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.5803 700.0638   275599.96311  -729931.74162  71%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.3803 699.7258   280149.59226  -729931.67788  72%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  357.0665 699.8288   286021.37007  -729931.61625  72%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.9500 700.2972   271068.86934  -729931.48525  73%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  356.7670 700.1688   277131.55423  -729931.45587  73%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.8871 701.3969   274982.12023  -729931.32924  74%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.2641 702.9169   267039.20090  -729931.30388  74%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.9154 703.5834   281416.86049  -729931.20576  75%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.7478 704.8080   274942.29813  -729931.09940  75%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.2941 704.6888   271476.35166  -729931.05507  162:52:39
+  76%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.6919 703.4936   275708.07007  -729930.93870  76%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.4465 702.7247   272309.80542  -729930.86265  77%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.4021 701.7618   278647.67342  -729930.92185  77%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.1395 702.4079   289702.74360  -729930.87473  78%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.6543 702.8466   273230.61341  -729930.82112  78%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.1546 702.1694   274669.08480  -729930.81329  79%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.0003 701.4228   280922.15438  -729930.69621  79%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.8561 701.6443   276487.56096  -729930.58080  80%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.1358 701.5385   287506.35516  -729930.50380  80%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.7539 700.8130   273062.05601  -729930.46145  172:45:52
+  81%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  355.0162 700.8968   268201.82268  -729930.43243  81%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.4553 701.6349   280897.11462  -729930.38296  82%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.2175 701.8640   273220.47072  -729930.36703  82%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.4247 701.9598   273282.09585  -729930.36368  83%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.3088 701.9893   276326.67374  -729930.30262  83%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.0819 702.3493   281942.48756  -729930.32727  84%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.8259 702.7584   280187.23679  -729930.21626  84%  0.71 0.66 0.31 0.24 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.4000 703.0756   278962.80500  -729930.18922  85%  0.71 0.66 0.31 0.24 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.6271 702.6109   284490.77789  -729930.19177  85%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.0506 702.7966   283850.41223  -729930.12598  182:20:49
+  86%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.0275 703.5762   274510.28461  -729930.03196  86%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.2695 703.3176   274869.16078  -729930.01205  87%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.6343 703.0010   271943.36773  -729929.95999  87%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.4501 702.4979   275744.64193  -729929.87395  88%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.8473 701.5210   272001.86533  -729929.84392  88%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.9836 701.3006   272938.00254  -729929.88089  89%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.6104 701.5463   279972.76595  -729929.84307  89%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.0771 702.4120   267082.59492  -729929.80283  90%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.1284 702.5142   288359.88344  -729929.71063  90%  0.71 0.66 0.31 0.24 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.0459 703.8834   270069.76630  -729929.72865  191:36:58
+  91%  0.71 0.66 0.31 0.24 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.6809 704.0685   278716.00255  -729929.67393  91%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.3439 703.4930   267056.36961  -729929.60485  92%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.3886 703.2204   277200.66578  -729929.60978  92%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.3294 702.9315   277422.10890  -729929.66124  93%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.8236 703.8146   278261.19024  -729929.61158  93%  0.71 0.66 0.31 0.24 1.00 0.30 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.7417 704.3321   285027.42083  -729929.57432  94%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.0712 704.0317   282858.43903  -729929.50245  94%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.3080 704.1039   270930.30811  -729929.53377  95%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.5397 704.1934   278869.12779  -729929.53791  95%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.1497 704.0497   270083.56307  -729929.57888  200:45:44
+  96%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  352.9849 704.1811   285623.94090  -729929.57508  96%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.4694 704.0882   288973.16090  -729929.56050  97%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.5467 704.0832   278121.58670  -729929.48972  97%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.0899 703.6758   275304.95919  -729929.47725  98%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.1688 703.4083   274234.54166  -729929.42542  98%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.8149 704.0921   287393.01338  -729929.38730  99%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.7408 704.5372   283018.42444  -729929.40659  99%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.4688 704.5506   272679.14052  -729929.39347 100%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  353.9712 704.3782   280520.72102  -729929.33180 100%  0.71 0.66 0.31 0.24 1.00 0.29 0.30 0.32 1.00   0.0078 0.0091 0.0031  0.0005  354.1969 704.0993   278771.80501  -729929.28955  210:05:05
+
+210:05:05 spent in MCMC
+
+Node-Index  Node-Type  Node-Label
+---------------------------------
+1           Tip        ajan
+2           Tip        alas
+3           Root       R
+
+ param      mean       median       S.D         min          max         2.5%        97.5%      2.5%HPD     97.5%HPD      ESS*        Eff*      rho1  
+------------------------------------------------------------------------------------------------------------------------------------------------------
+theta:1    0.007752    0.007739    0.000558    0.005684     0.010433    0.006709     0.008883    0.006655    0.008822   548.404239  0.010968  0.754467
+theta:2    0.009095    0.009076    0.000582    0.006841     0.011792    0.008005     0.010299    0.007955    0.010242   527.061822  0.010541  0.747985
+theta:3    0.003122    0.003121    0.000079    0.002818     0.003466    0.002968     0.003278    0.002967    0.003276  3158.872753  0.063177  0.382302
+tau:3      0.000508    0.000507    0.000022    0.000424     0.000601    0.000466     0.000552    0.000467    0.000552   929.360325  0.018587  0.807627
+W:1->2   354.252120  347.655339  117.893096   25.762523   874.829769  138.520241   601.266010  125.161212  585.530359   231.804942  0.004636  0.975907
+W:2->1   704.055309  698.462830  151.680886  208.598797  1442.404391  426.836304  1016.558221  411.332450  996.833099   264.260498  0.005285  0.962883
+M:1->2     0.794532    0.788728    0.236670    0.067839     1.731290    0.336185     1.270251    0.317058    1.248211   236.351604  0.004727  0.963554
+M:2->1     1.349474    1.348918    0.232679    0.475397     2.402557    0.893394     1.806743    0.886700    1.798781   284.067767  0.005681  0.916992
+
+lnL      -729929.197208  -729928.520500   83.892833  -730328.834000  -729570.576000  -730095.641000  -729767.136000  -730092.467000  -729764.428000   559.518405  0.011190  0.145866
+
+
+FigTree tree is in fit/output/ch1.FigTree.tre
+
+Summarizing parameter estimates using file fit/output/ch1.conditional_a1b1.txt ...
+
+ param      mean        S.D         2.5%        97.5%      2.5%HPD     97.5%HPD     Effu      Effy       c    
+--------------------------------------------------------------------------------------------------------------
+theta:1    0.007752    0.000559    0.006708     0.008881    0.006655    0.008827  0.010923  0.010921  1.021195
+theta:2    0.009095    0.000581    0.008010     0.010287    0.007931    0.010208  0.010649  0.010647  1.020542
+theta:3    0.003122    0.000079    0.002968     0.003278    0.002965    0.003275  0.062022  0.061775  1.068803
+W:1->2   354.197748  117.780640  138.241151   599.595202  120.909425  580.612835  0.004632  0.004632  1.002694
+M:1->2     0.794513    0.236586    0.338193     1.267767    0.323698    1.251208  0.004721  0.004720  1.004397
+W:2->1   704.035462  151.676261  426.771257  1015.275150  404.929875  991.006948  0.005288  0.005288  1.003916
+M:2->1     1.349434    0.232566    0.895518     1.809799    0.903542    1.812018  0.005697  0.005697  1.009969
+
