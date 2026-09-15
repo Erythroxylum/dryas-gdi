@@ -35,8 +35,8 @@ Migration-aware gdi analyses within the AIH clade using the fitted `aih-prior3-s
 
 Focal comparisons include:
 
-- northern Greenland / North Slope vs. central / southwestern Greenland *D. integrifolia*
-- central / southwestern Greenland *D. integrifolia* vs. *D. hookeriana*
+- *D. integrifolia*: northern Greenland & Brooks Range population vs. southwestern Greenland & central Canada population 
+- *D. hookeriana* vs. *D. integrifolia* southwestern Greenland & central Canada population 
 
 The non-sister *integrifolia* comparison uses the age of the relevant most recent common ancestral population as the gdi cutoff.
 
@@ -47,12 +47,12 @@ Main scripts:
 
 ### `poocpu/`
 
-Migration-aware gdi analyses within the Eurasian *D. octopetala–D. punctata* complex.
+Migration-aware gdi analyses within the Eurasian *D. octopetala–D. punctata* complex using the fitted 'H4D' demographic model.
 
 Focal comparisons include:
 
-- European vs. Carpathian / Kola *D. octopetala*
-- *D. punctata* vs. the Russia / Svalbard–Japan lineage
+- European vs. Carpathian *D. octopetala* populations
+- *D. punctata* vs. the Russia / Svalbard lineage of *D. octopetala*
 
 Main scripts:
 
@@ -61,14 +61,14 @@ Main scripts:
 
 ### `ajan-alas/four-pop-validation/`
 
-Validation of geographic population structure within *D. ajanensis* and *D. alaskensis* using the fitted four-population model.
+Validation of geographic population structure within *D. ajanensis* and *D. alaskensis* using a fitted four-population model 'ajan-alas-m3-prior2-s20-p4'.
 
 Focal comparisons include:
 
 - Interior vs. Seward *D. ajanensis*
 - Interior vs. Seward *D. alaskensis*
 
-These analyses test whether the geographic populations behave as independently exclusive lineages before collapsing them for the direct species-level comparison.
+In response to the geographic structure of the phylogenetic inference ((ajan_seward, alas_seward),(ajan_interior, alas_interior)), these analyses test whether the geographic populations behave as independently exclusive lineages before collapsing them for the direct species-level comparison.
 
 Main script:
 
