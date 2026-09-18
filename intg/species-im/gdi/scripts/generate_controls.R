@@ -60,8 +60,8 @@ writeLines(
 )
 
 comparison_specs <- list(
-  aab = list(counts = "2 1", imap = "../../imap/intg_aab.imap.txt"),
-  abb = list(counts = "1 2", imap = "../../imap/intg_abb.imap.txt")
+  aab = list(counts = "2 1", imap = "../imap/intg_aab.imap.txt"),
+  abb = list(counts = "1 2", imap = "../imap/intg_abb.imap.txt")
 )
 
 for (scenario in names(parameter_files)) {
