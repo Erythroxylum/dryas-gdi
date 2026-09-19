@@ -1,106 +1,195 @@
 # dryas-gdi
 
-Reproducible workflow for estimating the genealogical divergence index (gdi) across chromosomes from gene trees simulated under fitted BPP multispecies-coalescent-with-migration (MSC-M) demographic models for *Dryas*.
+Reproducible chromosome-wise workflow for estimating migration-aware genealogical divergence index (gdi) from BPP multispecies-coalescent-with-migration (MSC-M) models in *Dryas*.
 
-## General approach
+## Overview
 
-The gdi analyses are downstream of a broader BPP model-building workflow:
+The repository contains the demographic-model fits, parameter extraction, gene-tree simulations, and gdi summaries used to compare genealogical exclusivity among selected *Dryas* lineages. The workflow is downstream of broader population-genomic analyses and is intended to quantify lineage exclusivity under explicit migration models, not to treat gdi as a standalone species classifier.
 
-1. **Population-tree exploration.** Use broad population sampling, admixture analyses, phylogenetic inference, and sliding-window population trees to identify stable lineage relationships, topological heterogeneity, and candidate demographic structure.
+The general workflow is:
 
-2. **Pairwise BPP A00/IM screening.** Fit pairwise isolation-with-migration models to identify candidate gene-flow events. These analyses are used to inform more complex demographic models; they are not simply concatenated into a global migration network because omitted populations can create ghost-gene-flow artifacts.
+1. Use admixture analyses, phylogenetic inference, sliding-window population trees, and geography to define population structure and formulate candidate demographic models.
+2. Use pairwise BPP A00/IM analyses to screen candidate migration edges.
+3. Fit larger chromosome-specific BPP A00 MSC-M models and estimate `theta`, `tau`, and migration rate `W`.
+4. Extract chromosome-specific posterior means.
+5. Simulate 1,000,000 three-sequence gene trees per test under the fitted model:
+   - `aab`: two sequences from lineage A and one from B, estimating gdi for A.
+   - `abb`: one sequence from A and two from B, estimating gdi for B.
+6. Score gdi as the proportion of simulated trees in which the two focal sequences coalesce first and before the relevant divergence-time cutoff.
+7. Compare chromosome-level gdi values across demographic models and with morphology, geography, admixture, and phylogenetic structure.
 
-3. **Fit complex BPP A00 MSC-M models.** Estimate divergence times (`tau`), population sizes (`theta`), and migration rates (`W`) in broader demographic context, chromosome by chromosome.
+For sister pairs the cutoff is their divergence time. For non-sister pairs, the cutoff is the age of the ancestral population subtending the two focal lineages.
 
-4. **Summarize posterior behavior across chromosomes.** Compare chromosome-specific posterior estimates of `tau`, `theta`, and `W` to assess concordance, asymmetry, and outlying chromosomes.
+Reference: Kornai D., Jiao X., Ji J., Flouri T., Yang Z. 2024. Hierarchical Heuristic Species Delimitation Under the Multispecies Coalescent Model with Migration. *Systematic Biology* 73:1015–1037. https://doi.org/10.1093/sysbio/syae050
 
-5. **Simulate gene trees for gdi.** Following Kornai et al. (2024), retain the fitted MSC-M demographic model and chromosome-specific posterior mean parameter values, but sample only three sequences from the two focal populations at a time:
-   - `aab`: two sequences from population A and one from population B
-   - `abb`: one sequence from population A and two from population B
+## Repository structure
 
-6. **Calculate gdi from simulations.** Under the Kornai et al. (2024) definition (`gdi_K`, Eq. 13), gdi is the proportion of simulated gene trees in which the two sequences from the focal population coalesce first and before the relevant population-divergence time.
+```text
+dryas-gdi/
+├── intg/
+│   ├── parameters/              # AIH chromosome-specific posterior means
+│   ├── controls/                # full-AIH gdi simulation controls
+│   ├── scripts/                 # control generation, simulation, summaries
+│   ├── output/                  # full-AIH gdi results
+│   └── species-im/              # direct two-population D. integrifolia IM analysis
+│       ├── fit/                 # original W-prior-mean-2 empirical fits
+│       ├── sensitivity/         # migration-prior sensitivity fits
+│       ├── scripts/             # fit construction, fitting, parameter extraction
+│       └── gdi/                 # prior2 vs prior20 gdi simulations
+├── poocpu/
+│   ├── model/                   # reduced H4d-derived demographic model
+│   ├── parameters/              # chromosome-specific posterior means
+│   ├── controls/                # gdi simulation controls
+│   ├── scripts/                 # parameter extraction, simulation, summaries
+│   └── output/
+└── ajan-alas/
+    ├── four-pop-validation/     # within-species Interior/Seward tests
+    │   ├── model/
+    │   ├── parameters/
+    │   ├── controls/
+    │   ├── scripts/
+    │   └── output/
+    └── species-im/              # direct D. ajanensis vs D. alaskensis IM analysis
+        ├── fit/
+        ├── scripts/
+        └── gdi/
+```
 
-7. **Compare gdi across chromosomes and with other evidence.** gdi is treated as a measure of genealogical exclusivity under the fitted MSC-M model rather than as an automatic species-delimitation rule. Results are interpreted alongside morphology, geography, admixture, phylogenetic structure, and demographic history.
+The analysis-specific directories preserve the fitted demographic model, extracted parameters, simulation controls, and resulting gdi tables so that each comparison can be reproduced independently.
 
-Reference:
+## Analysis-specific details
 
-Kornai D., Jiao X., Ji J., Flouri T., Yang Z. 2024. Hierarchical Heuristic Species Delimitation Under the Multispecies Coalescent Model with Migration. *Systematic Biology* 73:1015–1037.  
-https://doi.org/10.1093/sysbio/syae050
+### AIH / *D. integrifolia* and *D. hookeriana* — `intg/`
 
-## Implemented analyses
+The full AIH analysis uses the fitted `aih-prior3-s16-p4` MSC-M model and retains all migration edges during gene-tree simulation.
 
-### `intg/`
+Two comparisons are evaluated:
 
-Migration-aware gdi analyses within the AIH clade using the fitted `aih-prior3-s16-p4` demographic model.
+- northern Greenland/North Slope *D. integrifolia* vs. Canadian Arctic/southwestern Greenland *D. integrifolia*;
+- Canadian Arctic/southwestern Greenland *D. integrifolia* vs. *D. hookeriana*.
 
-Focal comparisons include:
+In the fitted AIH topology, the two *D. integrifolia* populations are non-sister lineages. Their gdi test therefore uses the age of node `IIH`, the ancestral population subtending both focal populations, rather than a direct sister-pair divergence time.
 
-- *D. integrifolia*: northern Greenland & Brooks Range population vs. southwestern Greenland & central Canada population 
-- *D. hookeriana* vs. *D. integrifolia* southwestern Greenland & central Canada population 
+Main workflow:
 
-The non-sister *integrifolia* comparison uses the age of the relevant most recent common ancestral population as the gdi cutoff.
+```text
+intg/parameters/aih-prior3-s16-p4-means.csv
+intg/scripts/generate_controls.R
+intg/scripts/run_gdi.R
+intg/scripts/summarize_results.R
+```
 
-Main scripts:
+### Direct two-population *D. integrifolia* IM model — `intg/species-im/`
 
-- `intg/scripts/generate_controls.R`
-- `intg/scripts/run_gdi.R`
+Chromosome-level CASTER analyses frequently recover the two major *D. integrifolia* geographic populations together, whereas the broader AIH BPP model places the Canadian Arctic/southwestern Greenland population with *D. hookeriana*. To evaluate the monophyletic *D. integrifolia* hypothesis directly, a new two-population IM model was fit independently to each nuclear chromosome:
 
-### `poocpu/`
+```text
+(intg_nGL_Nslope, intg_CAswGL)R;
+```
 
-Migration-aware gdi analyses within the Eurasian *D. octopetala–D. punctata* complex using the fitted 'H4D' demographic model.
+The empirical sequence files were reduced to the eight *D. integrifolia* samples in the original AIH imap. A locus was retained when both focal populations were represented; individual samples were allowed to be missing locus by locus.
 
-Focal comparisons include:
+The original direct fit used `W ~ Gamma(2,1)` (prior mean 2). Migration-rate posteriors were strongly prior-sensitive, so the same nine chromosome fits were repeated with:
 
-- European vs. Carpathian *D. octopetala* populations
-- *D. punctata* vs. the Russia / Svalbard lineage of *D. octopetala*
+```text
+W ~ Gamma(2,0.1)   # prior mean 20
+W ~ Gamma(2,0.01)  # prior mean 200
+```
 
-Main scripts:
+The mean-20 fits changed inferred `W` substantially but left `theta` and `tau` broadly stable. The mean-200 fits produced strong parameter coupling, very low ESS for `tau`, and unstable estimates on several chromosomes, indicating poor identifiability under the highly permissive prior. Final gdi sensitivity comparisons therefore use the two well-behaved parameterizations: prior mean 2 and prior mean 20.
 
-- `poocpu/scripts/generate_controls.R`
-- `poocpu/scripts/run_gdi.R`
+Despite the tenfold shift in the migration prior, gdi was nearly unchanged:
 
-### `ajan-alas/four-pop-validation/`
+```text
+                         prior mean 2    prior mean 20
+nGL/North Slope              0.286           0.294
+CA/southwestern Greenland    0.366           0.374
+```
 
-Validation of geographic population structure within *D. ajanensis* and *D. alaskensis* using a fitted four-population model 'ajan-alas-m3-prior2-s20-p4'.
+This analysis shows that the direct *D. integrifolia* gdi result is robust even though the absolute migration-rate estimates are prior-sensitive.
 
-Focal comparisons include:
+Main workflow:
 
-- Interior vs. Seward *D. ajanensis*
-- Interior vs. Seward *D. alaskensis*
+```text
+intg/species-im/scripts/build_fit_controls.R
+intg/species-im/scripts/run_fit.R
+intg/species-im/scripts/extract_fit_parameters.R
+intg/species-im/scripts/extract_sensitivity_parameters.R
+intg/species-im/gdi/scripts/generate_controls.R
+intg/species-im/gdi/scripts/run_gdi.R
+```
 
-In response to the geographic structure of the phylogenetic inference ((ajan_seward, alas_seward),(ajan_interior, alas_interior)), these analyses test whether the geographic populations behave as independently exclusive lineages before collapsing them for the direct species-level comparison.
+### Eurasian *D. octopetala–D. punctata* comparisons — `poocpu/`
 
-Main script:
+These analyses use a reduced H4d-derived MSC-M model:
 
-- `ajan-alas/four-pop-validation/model/run_gdi.R`
+```text
+(Po,((octo_EU,octo_Carp_MK)Octo,(Pu,RU_SJ)Punc)AOcPu)R;
+```
 
-### `ajan-alas/species-im/`
+Focal tests are:
 
-Direct species-level *D. ajanensis* vs. *D. alaskensis* analysis.
+- European vs. Carpathian/Macedonian *D. octopetala*;
+- *D. punctata* vs. the Russia/Svalbard-Japan lineage.
 
-Interior and Seward populations were first collapsed within species. A new two-species isolation-with-migration model,
+The reduced model retains three migration edges from H4d: `octo_EU -> RU_SJ`, `RU_SJ -> octo_EU`, and `Po -> Punc`. The focal pairs themselves therefore do not necessarily have direct migration edges, but gdi is simulated under the complete reduced migration graph.
 
-`(ajan, alas)R`
+Main workflow:
 
-was then fit independently to each of the nine nuclear chromosomes to estimate chromosome-specific `theta`, `tau_R`, and bidirectional migration rates. These newly fitted species-level posterior means were used for reciprocal `aab` and `abb` gene-tree simulations and gdi estimation.
+```text
+poocpu/model/poocpu_model.R
+poocpu/parameters/h4d-s47-p9-means.csv
+poocpu/scripts/generate_controls.R
+poocpu/scripts/run_gdi.R
+poocpu/scripts/summarize_results.R
+```
 
-Main scripts:
+### *D. ajanensis–D. alaskensis* four-population validation — `ajan-alas/four-pop-validation/`
 
-- `ajan-alas/species-im/scripts/build_fit_controls.R`
-- `ajan-alas/species-im/scripts/run_fit.R`
-- `ajan-alas/species-im/scripts/extract_fit_parameters.R`
-- `ajan-alas/species-im/gdi/scripts/generate_controls.R`
-- `ajan-alas/species-im/gdi/scripts/run_gdi.R`
+The four-population model is:
 
-## Current results
+```text
+((ajan_Interior,ajan_Seward)J,(alas_Interior,alas_Seward)L)R;
+```
 
-The implemented analyses show strong heterogeneity in genealogical exclusivity among recent *Dryas* lineages:
+The fitted model retains four migration edges between geographically corresponding *ajanensis* and *alaskensis* populations. The gdi tests themselves compare Interior vs. Seward populations within each species:
 
-- *D. ajanensis* Interior vs. Seward: low gdi
-- *D. alaskensis* Interior vs. Seward: low gdi
-- direct species-level *D. ajanensis* vs. *D. alaskensis*: uniformly low gdi across chromosomes
-- European vs. Carpathian / Kola *D. octopetala*: intermediate gdi
-- *D. punctata* vs. Russia / Svalbard–Japan: asymmetric low-to-intermediate gdi
-- AIH comparisons: generally intermediate gdi
+- *D. ajanensis* Interior vs. Seward;
+- *D. alaskensis* Interior vs. Seward.
 
-These results reinforce the use of gdi as one component of a broader population- and species-boundary framework rather than as a standalone taxonomic classifier.
+These tests validate the behavior of strongly structured geographic populations before the species-level populations are collapsed.
+
+Main workflow:
+
+```text
+ajan-alas/four-pop-validation/model/four_pop_model.R
+ajan-alas/four-pop-validation/parameters/four_pop_means.csv
+ajan-alas/four-pop-validation/scripts/generate_controls.R
+ajan-alas/four-pop-validation/scripts/run_gdi.R
+```
+
+### Direct *D. ajanensis* vs. *D. alaskensis* IM model — `ajan-alas/species-im/`
+
+Interior and Seward populations were collapsed within species and a direct two-species IM model was fit independently to each chromosome:
+
+```text
+(ajan,alas)R;
+```
+
+The fitted chromosome-specific `theta`, `tau_R`, and bidirectional `W` values were then used for reciprocal `aab`/`abb` simulations.
+
+Main workflow:
+
+```text
+ajan-alas/species-im/scripts/build_fit_controls.R
+ajan-alas/species-im/scripts/run_fit.R
+ajan-alas/species-im/scripts/extract_fit_parameters.R
+ajan-alas/species-im/gdi/scripts/generate_controls.R
+ajan-alas/species-im/gdi/scripts/run_gdi.R
+```
+
+## Interpretation
+
+Across these analyses, gdi is used as a quantitative description of genealogical exclusivity under explicitly fitted MSC-M histories. Low, intermediate, and high gdi values are interpreted together with morphology, geography, admixture, phylogenetic relationships, and ecological differentiation rather than as automatic taxonomic decisions.
+
+Current results include low within-species Interior/Seward gdi in *D. ajanensis* and *D. alaskensis*, low direct species-level gdi between those two morphologically differentiated taxa, intermediate and prior-robust gdi between the two main *D. integrifolia* populations, and intermediate/asymmetric gdi among the Eurasian focal lineages.
